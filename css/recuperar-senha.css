@@ -1,0 +1,439 @@
+
+/* SALVUSCONNECT — RECUPERAÇÃO DE SENHA */
+
+.recovery-page {
+    display: block;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    color: #18243a;
+    background: #f4f6fa;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.recovery-page .auth-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f6fa;
+}
+
+/* Painel da marca */
+
+.recovery-page .auth-banner {
+    position: relative;
+    display: flex;
+    flex: 0 0 40%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 42px;
+    overflow: hidden;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(52, 120, 246, 0.18), transparent 42%),
+        linear-gradient(145deg, #0b1833 0%, #101f41 55%, #132b50 100%);
+}
+
+.recovery-page .auth-banner::after {
+    position: absolute;
+    right: -100px;
+    bottom: -140px;
+    width: 350px;
+    height: 350px;
+    content: "";
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 36px rgba(255, 255, 255, 0.025),
+        0 0 0 72px rgba(255, 255, 255, 0.018);
+    pointer-events: none;
+}
+
+.recovery-page .brand-hero {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    width: 100%;
+    max-width: 380px;
+}
+
+.recovery-page .brand-icon-lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 22px;
+}
+
+.recovery-page .brand-icon-lg svg {
+    width: 35px;
+    height: 35px;
+}
+
+.recovery-page .brand-name {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.7px;
+    text-decoration: none;
+}
+
+.recovery-page .brand-salvus {
+    color: #ffffff;
+}
+
+.recovery-page .brand-connect {
+    color: #4c9bff;
+}
+
+.recovery-page .brand-divider {
+    width: 44px;
+    height: 3px;
+    border-radius: 3px;
+    background: #3478f6;
+}
+
+.recovery-page .brand-hero h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.recovery-page .brand-hero p {
+    max-width: 320px;
+    margin: 0;
+    color: #c8d2e4;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.recovery-page .banner-footer {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #a9b9d2;
+    font-size: 0.78rem;
+}
+
+.recovery-page .banner-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5d9cff;
+}
+
+/* Área principal */
+
+.recovery-page .auth-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 35px 25px;
+    background: #f4f6fa;
+}
+
+.recovery-page .auth-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 23px;
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box;
+    padding: 38px;
+    color: #18243a;
+    background: #ffffff;
+    border: 1px solid #e2e7ef;
+    border-radius: 17px;
+    box-shadow: 0 12px 36px rgba(11, 24, 51, 0.07);
+}
+
+/* Ícone de recuperação */
+
+.recovery-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    width: 54px;
+    height: 54px;
+    color: #1c3155;
+    background: #eaf0ff;
+    border: 1px solid #dce5f5;
+    border-radius: 15px;
+}
+
+.recovery-icon svg {
+    width: 25px;
+    height: 25px;
+}
+
+/* Cabeçalho */
+
+.recovery-page .auth-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recovery-page .auth-eyebrow {
+    color: #3478f6;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.35px;
+}
+
+.recovery-page .auth-header h2 {
+    margin: 0;
+    color: #0b1833;
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+}
+
+.recovery-page .auth-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.87rem;
+    line-height: 1.7;
+}
+
+/* Formulário */
+
+.recovery-page .recovery-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.recovery-page .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+.recovery-page .form-group label {
+    color: #243653;
+    font-size: 0.83rem;
+    font-weight: 700;
+}
+
+.recovery-page .recovery-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.recovery-page .recovery-input-wrap > svg {
+    position: absolute;
+    left: 13px;
+    width: 17px;
+    height: 17px;
+    color: #8291a8;
+    pointer-events: none;
+}
+
+.recovery-page .form-group input {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 47px;
+    padding: 12px 14px 12px 41px;
+    color: #18243a;
+    background: #fbfcfe;
+    border: 1px solid #dce3ed;
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.88rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recovery-page .form-group input::placeholder {
+    color: #98a2b3;
+}
+
+.recovery-page .form-group input:hover {
+    border-color: #bdc9da;
+}
+
+.recovery-page .form-group input:focus {
+    background: #ffffff;
+    border-color: #3478f6;
+    box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.12);
+}
+
+/* Botão principal */
+
+.recovery-page .recovery-submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 16px 13px 19px;
+    color: #ffffff;
+    background: #1c3155;
+    border: 1px solid #1c3155;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recovery-page .recovery-submit:hover:not(:disabled) {
+    background: #294574;
+    border-color: #294574;
+    box-shadow: 0 4px 10px rgba(28, 49, 85, 0.12);
+}
+
+.recovery-page .recovery-submit:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.recovery-page .recovery-submit svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+/* Mensagens do formulário */
+
+.recovery-page .recovery-message[hidden] {
+    display: none !important;
+}
+
+.recovery-page .recovery-message {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #dce3ed;
+    border-radius: 9px;
+    font-size: 0.83rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.recovery-page .recovery-message.error {
+    color: #991b1b;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.recovery-page .recovery-message.success {
+    color: #166534;
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+/* Segurança e navegação */
+
+.recovery-page .recovery-security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: #7b8ba2;
+    font-size: 0.74rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.recovery-page .recovery-security-note svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: #3478f6;
+}
+
+.recovery-page .recovery-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 8px;
+    color: #2563eb;
+    font-size: 0.82rem;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.recovery-page .recovery-back-link:hover {
+    text-decoration: underline;
+}
+
+.recovery-page .recovery-back-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.recovery-page .recovery-copyright {
+    margin: 15px 0 0;
+    color: #94a3b8;
+    font-size: 0.72rem;
+    text-align: center;
+}
+
+/* Responsividade */
+
+@media (max-width: 868px) {
+    .recovery-page .auth-banner {
+        display: none;
+    }
+
+    .recovery-page .auth-content {
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width: 520px) {
+    .recovery-page .auth-content {
+        padding: 22px 14px;
+    }
+
+    .recovery-page .auth-card {
+        gap: 20px;
+        padding: 27px 21px;
+        border-radius: 14px;
+    }
+
+    .recovery-page .auth-header h2 {
+        font-size: 1.45rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .recovery-page .form-group input,
+    .recovery-page .recovery-submit {
+        transition: none;
+    }
+}

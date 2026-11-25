@@ -1,0 +1,556 @@
+
+/* SALVUSCONNECT — CADASTRO */
+
+.register-page {
+    display: block;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    color: #18243a;
+    background: #f4f6fa;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.register-page .auth-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f6fa;
+}
+
+/* Painel da marca */
+
+.register-page .auth-banner {
+    position: relative;
+    display: flex;
+    flex: 0 0 40%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 42px;
+    overflow: hidden;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(52, 120, 246, 0.18), transparent 42%),
+        linear-gradient(145deg, #0b1833 0%, #101f41 55%, #132b50 100%);
+}
+
+.register-page .auth-banner::after {
+    position: absolute;
+    right: -100px;
+    bottom: -140px;
+    width: 350px;
+    height: 350px;
+    content: "";
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 36px rgba(255, 255, 255, 0.025),
+        0 0 0 72px rgba(255, 255, 255, 0.018);
+    pointer-events: none;
+}
+
+.register-page .brand-hero {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Ícone da marca: mãos com coração em quadrado arredondado */
+
+.register-page .brand-icon-lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 22px;
+}
+
+.register-page .brand-icon-lg svg {
+    display: block;
+    width: 35px;
+    height: 35px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+}
+
+/* Nome da marca */
+
+.register-page .brand-name {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.7px;
+    text-decoration: none;
+}
+
+.register-page .brand-salvus {
+    color: #ffffff;
+}
+
+.register-page .brand-connect {
+    color: #4c9bff;
+}
+
+.register-page .brand-divider {
+    width: 44px;
+    height: 3px;
+    border-radius: 3px;
+    background: #3478f6;
+}
+
+.register-page .brand-hero h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.45px;
+}
+
+.register-page .brand-hero p {
+    max-width: 320px;
+    margin: 0;
+    color: #c8d2e4;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.register-page .banner-footer {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #a9b9d2;
+    font-size: 0.78rem;
+}
+
+.register-page .banner-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5d9cff;
+}
+
+/* Área do formulário */
+
+.register-page .auth-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 30px 25px;
+    background: #f4f6fa;
+}
+
+.register-page .auth-card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    padding: 32px;
+    color: #18243a;
+    background: #ffffff;
+    border: 1px solid #e2e7ef;
+    border-radius: 17px;
+    box-shadow: 0 12px 36px rgba(11, 24, 51, 0.07);
+}
+
+/* Cabeçalho */
+
+.register-page .auth-header {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.register-page .auth-eyebrow {
+    color: #3478f6;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.register-page .auth-header h2 {
+    margin: 0;
+    color: #0b1833;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+}
+
+.register-page .auth-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+/* Formulário */
+
+.register-page .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    width: 100%;
+    min-width: 0;
+}
+
+.register-page .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 0;
+}
+
+.register-page .form-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    width: 100%;
+    min-width: 0;
+}
+
+.register-page .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.register-page .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.register-page .form-group label {
+    color: #243653;
+    font-size: 0.81rem;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+.register-page .form-group input,
+.register-page .form-group select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 43px;
+    padding: 11px 12px;
+    color: #18243a;
+    background: #fbfcfe;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.84rem;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.register-page .form-group input::placeholder {
+    color: #98a2b3;
+    opacity: 1;
+}
+
+.register-page .form-group input:hover:not(:disabled),
+.register-page .form-group select:hover:not(:disabled) {
+    border-color: #bdc9da;
+}
+
+.register-page .form-group input:focus,
+.register-page .form-group select:focus {
+    background: #ffffff;
+    border-color: #3478f6;
+    box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.12);
+}
+
+.register-page .form-group select {
+    cursor: pointer;
+}
+
+.register-page .form-group select option {
+    color: #18243a;
+    background: #ffffff;
+}
+
+.register-page .form-group[hidden],
+.register-page [data-client-contact-grid][hidden],
+.register-page [data-client-phone][hidden] {
+    display: none !important;
+}
+
+.register-page .optional-label {
+    color: #8491a5;
+    font-size: 0.76rem;
+    font-weight: 400;
+}
+
+.register-page .field-help {
+    margin: -5px 0 0;
+    color: #7b8ba2;
+    font-size: 0.74rem;
+    line-height: 1.5;
+}
+
+/* Contatos adicionais */
+
+.register-page .client-contact-section {
+    padding: 16px;
+    background: #f8faff;
+    border: 1px solid #e5ebf5;
+    border-radius: 11px;
+}
+
+.register-page .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.register-page .section-heading > svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    color: #1c3155;
+}
+
+.register-page .section-heading h3 {
+    margin: 0 0 3px;
+    color: #18243a;
+    font-size: 0.86rem;
+    font-weight: 750;
+}
+
+.register-page .section-heading p {
+    margin: 0;
+    color: #718198;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+/* Mensagens */
+
+.register-page .form-message[hidden] {
+    display: none !important;
+}
+
+.register-page .form-message {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 9px;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.register-page .form-message.error {
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
+.register-page .form-message.success {
+    color: #166534;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+/* Botão de cadastro */
+
+.register-page .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 15px 12px 17px;
+    color: #ffffff;
+    background: #1c3155;
+    border: 1px solid #1c3155;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.register-page .submit-button:hover:not(:disabled) {
+    background: #294574;
+    border-color: #294574;
+    box-shadow: 0 4px 10px rgba(28, 49, 85, 0.12);
+}
+
+.register-page .submit-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.register-page .submit-button:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+}
+
+.register-page .submit-button svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.register-page .submit-button:focus-visible {
+    outline: 3px solid rgba(52, 120, 246, 0.3);
+    outline-offset: 3px;
+}
+
+/* Navegação inferior */
+
+.register-page .register-navigation {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.register-page .register-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: #2563eb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.register-page .register-back-link:hover {
+    text-decoration: underline;
+}
+
+.register-page .register-back-link svg {
+    width: 15px;
+    height: 15px;
+}
+
+.register-page .auth-footer-text {
+    margin: 20px 0 0;
+    color: #52627b;
+    font-size: 0.83rem;
+    text-align: center;
+}
+
+.register-page .auth-footer-text a {
+    color: #2563eb;
+    font-weight: 700;
+}
+
+.register-page .auth-copyright {
+    margin: 12px 0 0;
+    color: #94a3b8;
+    font-size: 0.71rem;
+    text-align: center;
+}
+
+/* Responsividade */
+
+@media (max-width: 1050px) {
+    .register-page .auth-banner {
+        flex-basis: 35%;
+        padding: 28px;
+    }
+
+    .register-page .auth-content {
+        padding: 24px 18px;
+    }
+
+    .register-page .auth-card {
+        max-width: 620px;
+        padding: 27px;
+    }
+}
+
+@media (max-width: 868px) {
+    .register-page .auth-banner {
+        display: none;
+    }
+
+    .register-page .auth-content {
+        justify-content: center;
+        padding: 28px 20px;
+    }
+
+    .register-page .auth-card {
+        max-width: 620px;
+    }
+}
+
+@media (max-width: 520px) {
+    .register-page .auth-content {
+        padding: 20px 12px;
+    }
+
+    .register-page .auth-card {
+        gap: 19px;
+        padding: 23px 17px;
+        border-radius: 14px;
+    }
+
+    .register-page .auth-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .register-page .form-grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .register-page .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .register-page .client-contact-section {
+        padding: 13px;
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .register-page .form-group input,
+    .register-page .form-group select,
+    .register-page .submit-button {
+        transition: none;
+    }
+}

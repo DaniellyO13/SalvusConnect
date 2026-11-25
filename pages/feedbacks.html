@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SalvusConnect - Feedbacks</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/feedbacks.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <div class="feedbacks-page">
+
+            <nav class="page-navigation" aria-label="Navegação da página">
+                <a href="dashboard.html" class="page-nav-button">
+                    <i data-lucide="house"></i>
+                    Início
+                </a>
+            </nav>
+
+            <header class="page-header feedbacks-header">
+
+                <div class="feedbacks-heading-icon">
+                    <i data-lucide="message-square"></i>
+                </div>
+
+                <div class="feedbacks-heading-text">
+                    <h1 id="pageTitle">Feedbacks de Clientes</h1>
+
+                    <p class="page-subtitle" id="pageSubtitle">
+                        Veja o que outros clientes dizem sobre os prestadores.
+                    </p>
+                </div>
+
+            </header>
+
+            <section
+                class="feedback-stats"
+                id="feedbackStats"
+                aria-label="Resumo das avaliações">
+
+                <div class="rating-summary">
+
+                    <p class="average-rating" id="averageRating">—</p>
+
+                    <div
+                        class="star-rating"
+                        id="averageStars"
+                        aria-label="Nota média">
+                        ☆☆☆☆☆
+                    </div>
+
+                </div>
+
+                <div class="rating-info">
+
+                    <p class="review-count" id="reviewCount">
+                        0 avaliações
+                    </p>
+
+                    <p class="review-type" id="reviewType">
+                        Clientes sobre prestadores
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section
+                class="loading-feedbacks"
+                id="loadingFeedbacks"
+                aria-label="Carregando avaliações">
+
+                <div class="feedback-skeleton"></div>
+                <div class="feedback-skeleton"></div>
+                <div class="feedback-skeleton"></div>
+
+            </section>
+
+            <section class="empty-feedbacks" id="emptyFeedbacks" hidden>
+
+                <div class="empty-feedback-icon">
+                    <i data-lucide="message-circle"></i>
+                </div>
+
+                <h2>Sem feedbacks</h2>
+
+                <p id="emptyDescription">
+                    Nenhum cliente deixou feedback ainda.
+                </p>
+
+            </section>
+
+            <section
+                class="feedback-list"
+                id="feedbackList"
+                aria-label="Lista de avaliações">
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/feedbacks.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>

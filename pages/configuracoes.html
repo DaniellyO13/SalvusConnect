@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SalvusConnect - Configurações</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/configuracoes.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+    <main class="main-container settings-main">
+
+        <div class="settings-page">
+
+            <nav class="page-navigation" aria-label="Navegação da página">
+                <button type="button" class="page-nav-button" id="btn-voltar">
+                    <i data-lucide="arrow-left"></i>
+                    Voltar
+                </button>
+            </nav>
+
+            <header class="settings-heading">
+                <div class="settings-heading-icon">
+                    <i data-lucide="settings"></i>
+                </div>
+
+                <div>
+                    <h1>Configurações</h1>
+                    <p>Gerencie seus dados pessoais e suas preferências.</p>
+                </div>
+            </header>
+
+            <section class="settings-card">
+
+                <div class="settings-section-title">
+                    <div class="section-icon">
+                        <i data-lucide="user"></i>
+                    </div>
+
+                    <div>
+                        <h2>Dados pessoais</h2>
+                        <p>Consulte e atualize suas informações de contato.</p>
+                    </div>
+                </div>
+
+                <div class="profile-preview">
+
+                    <div class="settings-avatar">d</div>
+
+                    <div class="settings-user-info">
+                        <strong>dny vs</strong>
+
+                        <span class="settings-user-email">
+                            danyoliveiraa001@gmail.com
+                        </span>
+
+                        <span class="role-badge">Administrador</span>
+                    </div>
+
+                </div>
+
+                <div class="settings-divider"></div>
+
+                <div class="settings-field full-width">
+
+                    <label for="email">
+                        <i data-lucide="mail"></i>
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        value="danyoliveiraa001@gmail.com"
+                        disabled>
+
+                    <small>
+                        <i data-lucide="lock"></i>
+                        O e-mail não pode ser alterado por esta tela.
+                    </small>
+
+                </div>
+
+                <div class="settings-grid">
+
+                    <div class="settings-field">
+
+                        <label for="phone">
+                            <i data-lucide="phone"></i>
+                            Telefone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            value="13997815606"
+                            autocomplete="tel">
+
+                    </div>
+
+                    <div class="settings-field">
+
+                        <label for="address">
+                            <i data-lucide="map-pin"></i>
+                            Endereço
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            value="Rua Eliseu Visconti 404, 11746654"
+                            autocomplete="street-address">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="settings-card">
+
+                <div class="settings-section-title">
+                    <div class="section-icon">
+                        <i data-lucide="bell"></i>
+                    </div>
+
+                    <div>
+                        <h2>Preferências de notificação</h2>
+                        <p>Escolha quais avisos você deseja receber.</p>
+                    </div>
+                </div>
+
+                <div class="notification-list">
+
+                    <div class="notification-item">
+
+                        <div class="notification-info">
+                            <strong>Notificações por e-mail</strong>
+
+                            <span>
+                                Receber atualizações e alertas no seu e-mail.
+                            </span>
+                        </div>
+
+                        <label class="switch" for="emailNotifications">
+                            <input
+                                type="checkbox"
+                                id="emailNotifications"
+                                checked>
+
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                    <div class="notification-item">
+
+                        <div class="notification-info">
+                            <strong>Notificações por SMS</strong>
+
+                            <span>
+                                Receber lembretes por mensagem no telefone.
+                            </span>
+                        </div>
+
+                        <label class="switch" for="smsNotifications">
+                            <input
+                                type="checkbox"
+                                id="smsNotifications">
+
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                    <div class="notification-item">
+
+                        <div class="notification-info">
+                            <strong>Lembretes de agendamentos</strong>
+
+                            <span>
+                                Receber avisos antes dos serviços agendados.
+                            </span>
+                        </div>
+
+                        <label class="switch" for="appointmentNotifications">
+                            <input
+                                type="checkbox"
+                                id="appointmentNotifications"
+                                checked>
+
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                    <div class="notification-item">
+
+                        <div class="notification-info">
+                            <strong>Promoções e novidades</strong>
+
+                            <span>
+                                Receber informações sobre ofertas e descontos.
+                            </span>
+                        </div>
+
+                        <label class="switch" for="promotions">
+                            <input
+                                type="checkbox"
+                                id="promotions">
+
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <div class="settings-actions">
+                <button
+                    type="button"
+                    class="save-settings"
+                    onclick="salvarConfiguracoes()">
+
+                    <i data-lucide="check-circle"></i>
+                    Salvar configurações
+
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/configuracoes.js"></script>
+    <script src="../js/sidebar.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botaoVoltar = document.getElementById("btn-voltar");
+
+            if (botaoVoltar) {
+                botaoVoltar.addEventListener("click", () => {
+                    const paginaAnterior = document.referrer;
+
+                    try {
+                        const urlAnterior = new URL(paginaAnterior);
+
+                        const mesmaOrigem =
+                            urlAnterior.origin === window.location.origin;
+
+                        const paginaAutenticacao =
+                            /\/(login|cadastro)\.html$/i.test(
+                                urlAnterior.pathname
+                            );
+
+                        if (
+                            mesmaOrigem &&
+                            !paginaAutenticacao &&
+                            paginaAnterior !== window.location.href
+                        ) {
+                            window.history.back();
+                        } else {
+                            window.location.href = "dashboard.html";
+                        }
+                    } catch {
+                        window.location.href = "dashboard.html";
+                    }
+                });
+            }
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SalvusConnect - Mensagens</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/chat.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <div class="messages-page">
+
+            <nav class="page-navigation" aria-label="Navegação da página">
+                <a href="dashboard.html" class="page-nav-button">
+                    <i data-lucide="house"></i>
+                    Início
+                </a>
+            </nav>
+
+            <header class="messages-header">
+                <div class="messages-heading-icon">
+                    <i data-lucide="messages-square"></i>
+                </div>
+
+                <div>
+                    <h1>Mensagens</h1>
+                    <p>Converse com os contatos relacionados aos seus serviços.</p>
+                </div>
+            </header>
+
+            <section class="messages-layout" aria-label="Área de mensagens">
+
+                <aside class="conversations-panel">
+
+                    <header class="conversations-header">
+                        <div>
+                            <h2>Conversas</h2>
+                            <p>Suas mensagens</p>
+                        </div>
+
+                        <span class="conversations-count" id="conversations-count">
+                            0
+                        </span>
+                    </header>
+
+                    <div
+                        class="conversations-list"
+                        id="conversations-list"
+                        aria-label="Lista de conversas">
+                    </div>
+
+                    <div class="empty-conversations" id="empty-conversations" hidden>
+                        <i data-lucide="message-circle"></i>
+                        <strong>Nenhuma conversa</strong>
+                        <p>Suas conversas aparecerão aqui.</p>
+                    </div>
+
+                </aside>
+
+                <section class="chat-panel" id="chat-panel">
+
+                    <div class="empty-chat" id="empty-chat">
+                        <div class="empty-chat-icon">
+                            <i data-lucide="messages-square"></i>
+                        </div>
+
+                        <h2>Suas mensagens</h2>
+
+                        <p>
+                            Selecione uma conversa para visualizar as mensagens
+                            e começar a conversar.
+                        </p>
+                    </div>
+
+                    <div class="chat-content" id="chat-content" hidden>
+
+                        <header class="chat-header">
+
+                            <button
+                                type="button"
+                                class="back-to-conversations"
+                                id="back-to-conversations"
+                                aria-label="Voltar para as conversas"
+                                title="Voltar para as conversas">
+
+                                <i data-lucide="arrow-left"></i>
+
+                            </button>
+
+                            <div class="chat-avatar" id="chat-avatar">
+                                <i data-lucide="user-round"></i>
+                            </div>
+
+                            <div class="chat-contact-info">
+                                <h2 id="chat-contact-name"></h2>
+                                <p id="chat-contact-status">
+                                    Conversa protegida no SalvusConnect
+                                </p>
+                            </div>
+
+                            <div class="chat-header-icon">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+
+                        </header>
+
+                        <div
+                            class="chat-messages"
+                            id="chat-messages"
+                            aria-live="polite"
+                            aria-label="Mensagens da conversa">
+
+                            <div class="empty-conversation-messages" id="empty-conversation-messages">
+                                <i data-lucide="message-circle"></i>
+                                <p>Esta conversa ainda não tem mensagens.</p>
+                                <span>Envie uma mensagem para começar.</span>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="blocked-warning"
+                            id="blocked-warning"
+                            role="status"
+                            hidden>
+
+                            <i data-lucide="shield-alert"></i>
+
+                            <span>
+                                Por segurança, não envie telefones, e-mails,
+                                identificadores de redes sociais ou contatos externos.
+                            </span>
+
+                        </div>
+
+                        <div class="quick-messages-area">
+
+                            <button
+                                type="button"
+                                class="quick-messages-toggle"
+                                id="quick-messages-button"
+                                aria-expanded="false"
+                                aria-controls="quick-messages">
+
+                                <i data-lucide="zap"></i>
+                                Respostas rápidas
+                                <i data-lucide="chevron-down" class="quick-chevron"></i>
+
+                            </button>
+
+                            <div
+                                class="quick-messages"
+                                id="quick-messages"
+                                hidden>
+                            </div>
+
+                        </div>
+
+                        <form class="message-form" id="message-form">
+
+                            <input
+                                type="text"
+                                id="message-input"
+                                placeholder="Digite sua mensagem..."
+                                autocomplete="off"
+                                aria-label="Digite sua mensagem"
+                                maxlength="2000"
+                                required
+                                disabled>
+
+                            <button
+                                type="submit"
+                                id="send-message"
+                                aria-label="Enviar mensagem"
+                                title="Enviar mensagem"
+                                disabled>
+
+                                <i data-lucide="send"></i>
+
+                            </button>
+
+                        </form>
+
+                        <p class="chat-storage-note">
+                            <i data-lucide="info"></i>
+                            Suas mensagens ficam salvas no SalvusConnect.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/chat.js"></script>
+
+</body>
+</html>

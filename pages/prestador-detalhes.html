@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SalvusConnect - Detalhes do Prestador </title>
+  
+  <!-- Estilos Globais e Específicos -->
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/prestador-detalhes.css"> 
+  <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+  
+  <!-- Lucide Icons -->
+  <script
+      src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+      integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+      crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+
+  <!-- Sidebar, Navbar Mobile e Overlay compartilhados pelo sidebar.js -->
+
+  <!-- Conteúdo Principal Dinâmico -->
+  <main class="main-container">
+    <a href="servicos.html" class="back-btn">
+      <i data-lucide="arrow-left"></i> Voltar
+    </a>
+
+    <!-- Header Dinâmico do Prestador -->
+    <section class="provider-header-card">
+      <div class="provider-main-info">
+        <div class="provider-avatar-lg" id="p-avatar">D</div>
+        <div class="provider-info">
+          <h2 id="p-nome">Carregando...</h2>
+          <span class="category" id="p-categoria">...</span>
+          <div class="provider-meta">
+            <span id="p-avaliacao"></span>
+            <span id="p-telefone"></span>
+            <span id="p-endereco"></span>
+          </div>
+          <p class="description" id="p-descricao"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lista de Serviços Dinâmica -->
+    <section class="section-block">
+      <h2>Serviços Oferecidos</h2>
+      <div class="services-grid" id="services-container"></div>
+    </section>
+
+    <!-- Lista de Avaliações Dinâmica -->
+    <section class="section-block">
+      <h2 id="reviews-count">Avaliações</h2>
+      <div class="reviews-list" id="reviews-container"></div>
+    </section>
+  </main>
+
+  <!-- Script responsável por carregar os dados via JS -->
+  <script src="../js/prestador-detalhes.js"></script>
+
+  <!-- Sidebar compartilhada -->
+  <script src="../js/sidebar.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1833">
+
+    <title>Redefinir senha | SalvusConnect</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/SistemaDeLogin.css">
+    <link rel="stylesheet" href="../css/recuperar-senha.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="recovery-page">
+
+    <main class="auth-wrapper">
+
+        <!-- Painel da marca -->
+        <aside class="auth-banner">
+
+            <div class="brand-hero">
+
+                <div class="brand-icon-lg" aria-hidden="true">
+                    <i data-lucide="heart-handshake"></i>
+                </div>
+
+                <a
+                    href="login.html"
+                    class="brand-name"
+                    aria-label="SalvusConnect - página de login">
+
+                    <span class="brand-salvus">Salvus</span><span class="brand-connect">Connect</span>
+
+                </a>
+
+                <div class="brand-divider"></div>
+
+                <h1>Conexões que cuidam.</h1>
+
+                <p>
+                    Defina uma nova senha e prepare-se para acessar
+                    sua conta novamente.
+                </p>
+
+            </div>
+
+            <div class="banner-footer">
+                <span class="banner-dot"></span>
+                <span>Cuidado, confiança e conexão.</span>
+            </div>
+
+        </aside>
+
+        <!-- Área de redefinição de senha -->
+        <section class="auth-content">
+
+            <div class="auth-card recovery-card">
+
+                <div class="recovery-icon" aria-hidden="true">
+                    <i data-lucide="key-round"></i>
+                </div>
+
+                <header class="auth-header">
+
+                    <span class="auth-eyebrow">RECUPERAÇÃO DE ACESSO</span>
+
+                    <h2>Crie uma nova senha</h2>
+
+                    <p>
+                        Informe sua nova senha e repita-a para confirmar.
+                        Após a validação, você poderá voltar à tela de login.
+                    </p>
+
+                </header>
+
+                <!-- Mensagens do formulário -->
+                <div
+                    id="recovery-message"
+                    class="recovery-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden>
+                </div>
+
+                <form
+                    id="recovery-form"
+                    class="recovery-form"
+                    method="POST">
+
+                    <div class="form-group">
+
+                        <label for="recovery-password">Nova senha</label>
+
+                        <div class="recovery-input-wrap">
+                            <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+
+                            <input
+                                type="password"
+                                id="recovery-password"
+                                name="senha"
+                                placeholder="Digite sua nova senha"
+                                minlength="8"
+                                maxlength="200"
+                                autocomplete="new-password"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="recovery-password-confirm">
+                            Confirmar nova senha
+                        </label>
+
+                        <div class="recovery-input-wrap">
+                            <i data-lucide="shield-check" aria-hidden="true"></i>
+
+                            <input
+                                type="password"
+                                id="recovery-password-confirm"
+                                name="confirmar_senha"
+                                placeholder="Repita sua nova senha"
+                                minlength="8"
+                                maxlength="200"
+                                autocomplete="new-password"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn-primary recovery-submit"
+                        id="recovery-submit">
+
+                        <span>Salvar nova senha</span>
+
+                        <i data-lucide="arrow-right" aria-hidden="true"></i>
+
+                    </button>
+
+                </form>
+
+                <div class="recovery-security-note">
+                    <i data-lucide="shield-check" aria-hidden="true"></i>
+                    <span>Escolha uma senha segura para sua conta.</span>
+                </div>
+
+                <a href="login.html" class="recovery-back-link">
+                    <i data-lucide="arrow-left" aria-hidden="true"></i>
+                    Voltar para o login
+                </a>
+
+            </div>
+
+            <p class="recovery-copyright">
+                SalvusConnect · Cuidado que aproxima.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="../js/recuperar-senha.js"></script>
+
+</body>
+</html>

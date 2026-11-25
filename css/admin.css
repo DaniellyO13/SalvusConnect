@@ -1,0 +1,1948 @@
+
+/* =========================================================
+   SALVUSCONNECT — PAINEL ADMINISTRATIVO
+   Identidade visual alinhada ao index.css
+   ========================================================= */
+
+/* Variáveis alinhadas ao site principal */
+.pagina-admin {
+    --primary-color: #1c3155;
+    --primary-hover: #294574;
+    --primary-light: #e0e7ff;
+    --accent-blue: #3478f6;
+
+    --bg-main: #f4f6fa;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f7f9ff;
+    --bg-soft: #eef2ff;
+    --bg-soft-blue: #e1e9ff;
+    --primary-dark: #0b132b;
+
+    --text-primary: #18243a;
+    --text-secondary: #52627b;
+    --text-muted: #78869b;
+    --text-inverse: #ffffff;
+
+    --border-color: #e2e7ef;
+    --border-strong: #d5ddeb;
+    --focus-ring: rgba(28, 49, 85, 0.18);
+
+    --success: #16804a;
+    --success-bg: #e8f7ee;
+    --warning: #a96508;
+    --warning-bg: #fff4dc;
+    --danger: #c0393b;
+    --danger-bg: #fff0f0;
+
+    --sidebar-width: 250px;
+    --topbar-height: 66px;
+
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+
+    --shadow-sm: 0 1px 2px rgba(11, 19, 43, 0.04);
+    --shadow-md: 0 6px 20px rgba(11, 19, 43, 0.06);
+    --shadow-lg: 0 12px 32px rgba(11, 19, 43, 0.10);
+
+    --transition: all 0.2s ease;
+}
+
+/* =========================================================
+   RESET ISOLADO DO PAINEL
+   ========================================================= */
+
+.pagina-admin,
+.pagina-admin *,
+.pagina-admin *::before,
+.pagina-admin *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+}
+
+body.pagina-admin {
+    display: block;
+    min-height: 100vh;
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+}
+
+.pagina-admin button,
+.pagina-admin input,
+.pagina-admin select,
+.pagina-admin textarea {
+    font: inherit;
+}
+
+.pagina-admin button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.pagina-admin button:focus-visible,
+.pagina-admin a:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+.pagina-admin .admin-layout {
+    display: flex;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
+.pagina-admin .admin-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+
+    transition: var(--transition);
+}
+
+/* Marca */
+
+.pagina-admin .admin-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: var(--topbar-height);
+    padding: 13px 16px;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pagina-admin .admin-brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+    border-radius: 50%;
+}
+
+.pagina-admin .admin-brand-icon svg,
+.pagina-admin .admin-brand-icon i {
+    width: 17px;
+    height: 17px;
+}
+
+.pagina-admin .admin-brand-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pagina-admin .admin-brand h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    font-size: 1rem;
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -0.35px;
+}
+
+.pagina-admin .brand-salvus {
+    color: var(--primary-dark);
+}
+
+.pagina-admin .brand-connect {
+    color: #2365c7;
+}
+
+.pagina-admin .admin-brand-subtitle {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* Navegação */
+
+.pagina-admin .admin-navigation {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 10px 8px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.pagina-admin .admin-navigation::-webkit-scrollbar {
+    width: 5px;
+}
+
+.pagina-admin .admin-navigation::-webkit-scrollbar-thumb {
+    background: #dce3ef;
+    border-radius: 10px;
+}
+
+.pagina-admin .nav-label {
+    padding: 13px 10px 5px;
+
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.6px;
+}
+
+/* Botões de navegação */
+
+.pagina-admin .admin-nav-item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    min-height: 39px;
+    padding: 8px 10px;
+
+    color: #3f4d65;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-sm);
+
+    font-size: 0.9rem;
+    font-weight: 550;
+    text-align: left;
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagina-admin .admin-nav-item i,
+.pagina-admin .admin-nav-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke-width: 1.9;
+}
+
+.pagina-admin .admin-nav-item:hover {
+    color: var(--primary-color);
+    background-color: #f1f4fb;
+}
+
+.pagina-admin .admin-nav-item.active {
+    color: var(--primary-dark);
+    background-color: var(--primary-light);
+    font-weight: 650;
+}
+
+.pagina-admin .admin-nav-item.active::before {
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 0;
+
+    width: 3px;
+
+    content: "";
+    background-color: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+}
+
+.pagina-admin .nav-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 22px;
+    min-height: 21px;
+    margin-left: auto;
+    padding: 2px 7px;
+
+    color: var(--text-secondary);
+    background-color: #e9edf4;
+    border-radius: 20px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pagina-admin .admin-nav-item.active .nav-counter {
+    color: #ffffff;
+    background-color: var(--primary-color);
+}
+
+/* Rodapé da sidebar */
+
+.pagina-admin .admin-sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.pagina-admin .admin-profile-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+    margin-bottom: 4px;
+    padding: 7px 3px 12px;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pagina-admin .admin-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+    border-radius: 50%;
+}
+
+.pagina-admin .admin-avatar i,
+.pagina-admin .admin-avatar svg {
+    width: 17px;
+    height: 17px;
+}
+
+.pagina-admin .admin-profile-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pagina-admin .admin-profile-info strong {
+    overflow: hidden;
+
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pagina-admin .admin-profile-info span {
+    overflow: hidden;
+
+    color: var(--text-muted);
+    font-size: 0.73rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pagina-admin .admin-footer-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 37px;
+    padding: 8px 10px;
+
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-sm);
+
+    font-size: 0.86rem;
+    font-weight: 550;
+    text-decoration: none;
+
+    transition: var(--transition);
+}
+
+.pagina-admin .admin-footer-link i,
+.pagina-admin .admin-footer-link svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.pagina-admin .admin-footer-link:hover {
+    color: var(--primary-color);
+    background-color: #f1f4fb;
+}
+
+.pagina-admin .logout-link:hover {
+    color: var(--danger);
+    background-color: var(--danger-bg);
+}
+
+/* Fundo sobreposto no menu mobile */
+
+.pagina-admin .sidebar-overlay {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+
+    background-color: rgba(11, 19, 43, 0.42);
+    backdrop-filter: blur(2px);
+}
+
+.pagina-admin .sidebar-overlay.active {
+    display: block;
+}
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.pagina-admin .admin-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    width: calc(100% - var(--sidebar-width));
+    min-width: 0;
+    min-height: 100vh;
+    margin-left: var(--sidebar-width);
+}
+
+/* Barra superior */
+
+.pagina-admin .admin-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    width: 100%;
+    min-height: var(--topbar-height);
+    padding: 0 26px;
+
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pagina-admin .sidebar-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    color: var(--text-primary);
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagina-admin .sidebar-toggle:hover {
+    color: var(--primary-color);
+    background-color: var(--bg-soft);
+}
+
+.pagina-admin .sidebar-toggle i,
+.pagina-admin .sidebar-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pagina-admin .topbar-heading {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pagina-admin .topbar-eyebrow {
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.5px;
+}
+
+.pagina-admin .topbar-heading h1 {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    font-weight: 750;
+    letter-spacing: -0.3px;
+}
+
+.pagina-admin .topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    min-width: 0;
+}
+
+.pagina-admin .topbar-user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+    border-radius: 50%;
+}
+
+.pagina-admin .topbar-user-icon i,
+.pagina-admin .topbar-user-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+.pagina-admin .topbar-user div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pagina-admin .topbar-user strong {
+    overflow: hidden;
+
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pagina-admin .topbar-user span {
+    color: var(--text-muted);
+    font-size: 0.73rem;
+}
+
+/* Área de conteúdo */
+
+.pagina-admin .admin-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 22px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 24px 26px 32px;
+}
+
+.pagina-admin .admin-section {
+    display: none;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    min-width: 0;
+}
+
+.pagina-admin .admin-section.active {
+    display: flex;
+}
+
+/* =========================================================
+   BANNER DE BOAS-VINDAS
+   ========================================================= */
+
+.pagina-admin .welcome-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 24px 26px;
+
+    color: #ffffff;
+    background: var(--primary-dark);
+    border: 1px solid rgba(11, 19, 43, 0.08);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.pagina-admin .welcome-banner > div:first-child {
+    min-width: 0;
+}
+
+.pagina-admin .welcome-label {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #d7deed;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.pagina-admin .welcome-banner h2 {
+    margin-bottom: 6px;
+
+    color: #ffffff;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-weight: 750;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+}
+
+.pagina-admin .welcome-banner p {
+    color: #d7deed;
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.pagina-admin .welcome-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    opacity: 0.16;
+}
+
+.pagina-admin .welcome-icon i,
+.pagina-admin .welcome-icon svg {
+    width: 62px;
+    height: 62px;
+    stroke-width: 1.5;
+}
+
+/* Botão atualizar */
+
+.pagina-admin .admin-refresh-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+
+    min-height: 40px;
+    padding: 9px 16px;
+
+    color: #ffffff;
+    background-color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    border-radius: 7px;
+
+    font-size: 0.86rem;
+    font-weight: 650;
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagina-admin .admin-refresh-button i,
+.pagina-admin .admin-refresh-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.pagina-admin .admin-refresh-button:hover {
+    background-color: #2664d5;
+    border-color: #2664d5;
+    box-shadow: 0 4px 12px rgba(52, 120, 246, 0.2);
+    transform: translateY(-1px);
+}
+
+.pagina-admin .admin-refresh-button:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   CABEÇALHOS DAS SEÇÕES
+   ========================================================= */
+
+.pagina-admin .section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.pagina-admin .section-heading h2 {
+    color: var(--primary-dark);
+    font-size: 1.08rem;
+    font-weight: 750;
+    line-height: 1.5;
+}
+
+.pagina-admin .section-heading p {
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   CARDS DE ESTATÍSTICAS
+   ========================================================= */
+
+.pagina-admin .admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+
+    width: 100%;
+}
+
+.pagina-admin .admin-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+
+    min-width: 0;
+    min-height: 150px;
+    padding: 16px;
+
+    color: #ffffff;
+    background: var(--primary-dark);
+    border: 1px solid rgba(11, 19, 43, 0.08);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pagina-admin .admin-stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.pagina-admin .stat-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    width: 100%;
+}
+
+.pagina-admin .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 9px;
+}
+
+.pagina-admin .stat-icon i,
+.pagina-admin .stat-icon svg {
+    width: 19px;
+    height: 19px;
+    stroke-width: 1.9;
+}
+
+.pagina-admin .stat-icon.blue {
+    background: rgba(91, 153, 255, 0.22);
+}
+
+.pagina-admin .stat-icon.purple {
+    background: rgba(173, 133, 255, 0.22);
+}
+
+.pagina-admin .stat-icon.orange {
+    background: rgba(255, 174, 83, 0.22);
+}
+
+.pagina-admin .stat-icon.green {
+    background: rgba(75, 196, 139, 0.22);
+}
+
+.pagina-admin .stat-tag {
+    display: inline-flex;
+    align-items: center;
+
+    max-width: 100%;
+    padding: 4px 8px;
+
+    color: #d7deed;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
+
+    font-size: 0.67rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pagina-admin .admin-stat-card > p {
+    color: #d7deed;
+    font-size: 0.78rem;
+    font-weight: 550;
+    line-height: 1.35;
+}
+
+.pagina-admin .admin-stat-card .stat-number {
+    color: #ffffff;
+    font-size: clamp(1.45rem, 2vw, 1.8rem);
+    font-weight: 750;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.pagina-admin .admin-stat-card .stat-description {
+    color: #aebbd1;
+    font-size: 0.72rem;
+    line-height: 1.35;
+}
+
+/* =========================================================
+   PAINÉIS INFORMATIVOS
+   ========================================================= */
+
+.pagina-admin .admin-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+
+    width: 100%;
+}
+
+.pagina-admin .admin-panel-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    min-width: 0;
+    padding: 19px;
+
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.pagina-admin .panel-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pagina-admin .panel-card-heading h3 {
+    color: var(--primary-dark);
+    font-size: 0.98rem;
+    font-weight: 750;
+    line-height: 1.45;
+}
+
+.pagina-admin .panel-card-heading p {
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.pagina-admin .panel-card-heading > i,
+.pagina-admin .panel-card-heading > svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+
+    color: var(--text-muted);
+}
+
+/* Linhas de ação */
+
+.pagina-admin .admin-action-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 12px;
+
+    color: inherit;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagina-admin .admin-action-row:hover {
+    background-color: #fbfcff;
+    border-color: #ccd8ef;
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.pagina-admin .action-row-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+    border-radius: 8px;
+}
+
+.pagina-admin .action-row-icon i,
+.pagina-admin .action-row-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+.pagina-admin .action-row-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+}
+
+.pagina-admin .action-row-text strong {
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+.pagina-admin .action-row-text small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.pagina-admin .admin-action-row > i,
+.pagina-admin .admin-action-row > svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+
+    color: var(--text-muted);
+}
+
+/* =========================================================
+   CARTÕES DE ANTECEDENTES
+   Informações à esquerda e documento à direita
+   ========================================================= */
+
+.pagina-admin .antecedente-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+    gap: 20px;
+    align-items: stretch;
+
+    width: 100%;
+    min-width: 0;
+    padding: 18px;
+
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.pagina-admin .antecedente-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+
+    min-width: 0;
+}
+
+/* Status acima do nome do prestador */
+
+.pagina-admin .antecedente-cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.pagina-admin .antecedente-card-info h3 {
+    color: var(--primary-dark);
+    font-size: 0.98rem;
+    font-weight: 750;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.pagina-admin .antecedente-card-info p {
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.pagina-admin .antecedente-status {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+
+    color: var(--warning);
+    background-color: var(--warning-bg);
+    border-radius: 20px;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.pagina-admin .antecedente-dados-prestador,
+.pagina-admin .antecedente-dados-documento {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.pagina-admin .antecedente-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.pagina-admin .antecedente-acoes button {
+    min-height: 39px;
+    padding: 9px 13px;
+    border-radius: 7px;
+    font-size: 0.84rem;
+    font-weight: 650;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagina-admin .btn-aprovar-antecedente {
+    color: #ffffff;
+    background-color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.pagina-admin .btn-aprovar-antecedente:hover {
+    background-color: #11683c;
+}
+
+.pagina-admin .btn-reprovar-antecedente {
+    color: #ffffff;
+    background-color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.pagina-admin .btn-reprovar-antecedente:hover {
+    background-color: #a92f32;
+}
+
+/* Área de prévia do documento */
+
+.pagina-admin .antecedente-previa {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    min-width: 0;
+    min-height: 280px;
+    padding: 12px;
+
+    background-color: #f7f9fd;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+}
+
+.pagina-admin .antecedente-previa h4 {
+    color: var(--primary-dark);
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+/* Link único para abrir o documento completo */
+
+.pagina-admin .antecedente-link-documento {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+
+    min-height: 42px;
+    padding: 10px 16px;
+
+    color: #ffffff;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 7px;
+
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    transition: var(--transition);
+}
+
+.pagina-admin .antecedente-link-documento:hover {
+    color: #ffffff;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.pagina-admin .antecedente-link-documento:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Arquivo exibido dentro do cartão */
+
+.pagina-admin .antecedente-previa-arquivo {
+    width: 100%;
+    min-width: 0;
+}
+
+.pagina-admin .antecedente-previa-arquivo iframe,
+.pagina-admin .antecedente-previa-arquivo object,
+.pagina-admin .antecedente-previa-arquivo embed,
+.pagina-admin .antecedente-previa-arquivo img {
+    display: block;
+
+    width: 100%;
+    height: 280px;
+    min-height: 220px;
+
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.pagina-admin .antecedente-previa-arquivo img {
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+/* Estilos antigos preservados para compatibilidade */
+
+.pagina-admin .antecedente-card-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    min-width: 0;
+    min-height: 280px;
+    padding: 12px;
+
+    background-color: #f7f9fd;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+}
+
+.pagina-admin .antecedente-card-preview h4 {
+    color: var(--primary-dark);
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.pagina-admin .antecedente-card-preview iframe,
+.pagina-admin .antecedente-card-preview object,
+.pagina-admin .antecedente-card-preview embed,
+.pagina-admin .antecedente-card-preview img {
+    display: block;
+
+    width: 100%;
+    height: 280px;
+    min-height: 220px;
+
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.pagina-admin .antecedente-card-preview img {
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+.pagina-admin .antecedente-card-preview a {
+    color: var(--primary-color);
+    font-size: 0.82rem;
+    font-weight: 650;
+    text-decoration: underline;
+}
+
+/* =========================================================
+   STATUS DO SISTEMA
+   ========================================================= */
+
+.pagina-admin .system-status-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 10px 0;
+}
+
+.pagina-admin .system-status-item:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pagina-admin .status-dot {
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+
+    background-color: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(22, 128, 74, 0.12);
+}
+
+.pagina-admin .status-dot.pending-dot {
+    background-color: #d99a24;
+    box-shadow: 0 0 0 3px rgba(217, 154, 36, 0.13);
+}
+
+.pagina-admin .system-status-item > div {
+    min-width: 0;
+}
+
+.pagina-admin .system-status-item strong {
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 650;
+}
+
+.pagina-admin .system-status-item p {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+/* =========================================================
+   ESTADOS VAZIOS
+   ========================================================= */
+
+.pagina-admin .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 170px;
+    padding: 26px 18px;
+
+    color: var(--text-muted);
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+
+    text-align: center;
+}
+
+.pagina-admin .empty-state-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    margin-bottom: 2px;
+
+    color: #71819a;
+    background-color: #f0f3fa;
+    border-radius: 12px;
+}
+
+.pagina-admin .empty-state-icon i,
+.pagina-admin .empty-state-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.pagina-admin .empty-state h3 {
+    color: var(--text-primary);
+    font-size: 0.93rem;
+    font-weight: 700;
+}
+
+.pagina-admin .empty-state p {
+    max-width: 440px;
+
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   RODAPÉ DO CONTEÚDO
+   ========================================================= */
+
+.pagina-admin .admin-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    width: 100%;
+    margin-top: auto;
+    padding: 18px 0 0;
+
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+
+    font-size: 0.76rem;
+}
+
+/* =========================================================
+   RESPONSIVIDADE — TABLETS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .pagina-admin .admin-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pagina-admin .admin-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-admin .antecedente-card {
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 0.85fr);
+        gap: 15px;
+    }
+}
+
+/* =========================================================
+   RESPONSIVIDADE — CELULARES
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .pagina-admin .admin-sidebar {
+        width: min(280px, 86vw);
+        transform: translateX(-100%);
+        box-shadow: none;
+    }
+
+    .pagina-admin .admin-sidebar.open {
+        transform: translateX(0);
+        box-shadow: 8px 0 28px rgba(11, 19, 43, 0.12);
+    }
+
+    .pagina-admin .admin-main {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .pagina-admin .admin-topbar {
+        min-height: 62px;
+        padding: 0 18px;
+    }
+
+    .pagina-admin .sidebar-toggle {
+        display: flex;
+    }
+
+    .pagina-admin .admin-content {
+        gap: 19px;
+        padding: 20px 18px 26px;
+    }
+
+    .pagina-admin .admin-section {
+        gap: 19px;
+    }
+
+    .pagina-admin .welcome-banner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+
+        padding: 21px;
+    }
+
+    .pagina-admin .welcome-icon {
+        display: none;
+    }
+
+    .pagina-admin .admin-refresh-button {
+        min-height: 40px;
+    }
+
+    .pagina-admin .admin-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .pagina-admin .admin-stat-card {
+        min-height: 145px;
+        padding: 14px;
+    }
+
+    .pagina-admin .admin-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-admin .antecedente-card {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-admin .antecedente-previa {
+        min-height: 240px;
+    }
+
+    .pagina-admin .antecedente-previa-arquivo iframe,
+    .pagina-admin .antecedente-previa-arquivo object,
+    .pagina-admin .antecedente-previa-arquivo embed {
+        height: 240px;
+    }
+
+    /* Mantém compatibilidade com a classe antiga */
+    .pagina-admin .antecedente-card-preview {
+        min-height: 240px;
+    }
+
+    .pagina-admin .antecedente-card-preview iframe,
+    .pagina-admin .antecedente-card-preview object,
+    .pagina-admin .antecedente-card-preview embed {
+        height: 240px;
+    }
+}
+
+@media (max-width: 520px) {
+    .pagina-admin .admin-content {
+        padding-right: 13px;
+        padding-left: 13px;
+    }
+
+    .pagina-admin .admin-topbar {
+        padding-right: 13px;
+        padding-left: 13px;
+    }
+
+    .pagina-admin .welcome-banner {
+        padding: 18px;
+    }
+
+    .pagina-admin .welcome-banner h2 {
+        font-size: 1.2rem;
+    }
+
+    .pagina-admin .welcome-banner p {
+        font-size: 0.82rem;
+    }
+
+    .pagina-admin .section-heading {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .pagina-admin .section-heading h2 {
+        font-size: 1rem;
+    }
+
+    .pagina-admin .admin-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-admin .admin-stat-card {
+        min-height: 132px;
+    }
+
+    .pagina-admin .admin-panel-card {
+        padding: 15px;
+    }
+
+    .pagina-admin .admin-footer {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .pagina-admin .topbar-user {
+        gap: 8px;
+    }
+
+    .pagina-admin .topbar-user strong {
+        max-width: 150px;
+    }
+
+    .pagina-admin .antecedente-card {
+        padding: 14px;
+    }
+
+    .pagina-admin .antecedente-acoes {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pagina-admin .antecedente-acoes button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+   ========================================================= */
+
+@media (max-width: 360px) {
+    .pagina-admin .admin-content {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .pagina-admin .admin-stat-card {
+        padding: 13px;
+    }
+
+    .pagina-admin .admin-action-row {
+        gap: 8px;
+        padding: 9px;
+    }
+
+    .pagina-admin .action-row-text strong {
+        font-size: 0.8rem;
+    }
+
+    .pagina-admin .action-row-text small {
+        font-size: 0.7rem;
+    }
+}
+
+/* Respeita usuários que preferem menos animações */
+@media (prefers-reduced-motion: reduce) {
+    .pagina-admin *,
+    .pagina-admin *::before,
+    .pagina-admin *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* =========================================================
+   MELHORIAS VISUAIS — AGENDAMENTOS
+   ========================================================= */
+
+/* Área da listagem sem cartão externo */
+.pagina-admin #section-appointments > .admin-panel-card {
+    gap: 20px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Área de antecedentes sem cartão externo */
+.pagina-admin #containerAntecedentes {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Cartão individual */
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card {
+    position: relative;
+    overflow: hidden;
+    gap: 18px;
+
+    padding: 22px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #dce5f7 !important;
+    border-radius: 15px !important;
+
+    box-shadow: 0 3px 12px rgba(11, 19, 43, 0.045) !important;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+
+    content: "";
+    background: linear-gradient(180deg, #3478f6, #1c3155);
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card:hover {
+    border-color: #c6d6f5 !important;
+    box-shadow: 0 9px 24px rgba(28, 49, 85, 0.09) !important;
+    transform: translateY(-2px);
+}
+
+/* Cabeçalho e identificação do agendamento */
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:first-child {
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e8edf7;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:first-child h3 {
+    color: var(--primary-dark);
+    font-size: 1.02rem;
+    font-weight: 750;
+    letter-spacing: -0.2px;
+}
+
+/* Etiquetas de status */
+.pagina-admin #section-appointments .agendamento-status {
+    padding: 7px 13px !important;
+
+    border: 1px solid transparent;
+    border-radius: 30px !important;
+
+    font-size: 0.77rem;
+    font-weight: 750;
+    letter-spacing: 0.1px;
+}
+
+.pagina-admin #section-appointments .agendamento-status.status-pendente {
+    color: #96600a !important;
+    background: #fff4d9 !important;
+    border-color: #f4dfad;
+}
+
+.pagina-admin #section-appointments .agendamento-status.status-aceito {
+    color: #2458a6 !important;
+    background: #eaf2ff !important;
+    border-color: #d2e2ff;
+}
+
+.pagina-admin #section-appointments .agendamento-status.status-em_andamento {
+    color: #6742a5 !important;
+    background: #f1eaff !important;
+    border-color: #e1d4fa;
+}
+
+.pagina-admin #section-appointments .agendamento-status.status-concluido {
+    color: #167044 !important;
+    background: #e7f7ed !important;
+    border-color: #c9ecd7;
+}
+
+.pagina-admin #section-appointments .agendamento-status.status-recusado {
+    color: #a52f35 !important;
+    background: #fff0f0 !important;
+    border-color: #f5d1d3;
+}
+
+/* Blocos do prestador e cliente */
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(2) > div {
+    padding: 17px !important;
+
+    background: linear-gradient(145deg, #f5f8ff, #edf2ff) !important;
+    border: 1px solid #e1e9fa;
+    border-radius: 12px;
+}
+
+/* Títulos dos blocos */
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(2) h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 0.91rem;
+    font-weight: 750;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(2) h4 svg {
+    width: 19px;
+    height: 19px;
+    color: #3478f6;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(2) p {
+    margin-top: 5px;
+    color: #42516b;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+/* Informações do atendimento */
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(3) {
+    padding-top: 16px !important;
+    border-top: 1px solid #e4eaf5 !important;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(3) h4 {
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 0.91rem;
+    font-weight: 750;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(3) p {
+    margin-top: 6px;
+    color: #52627b;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(3) p strong {
+    color: #1c3155;
+    font-weight: 750;
+}
+
+/* =========================================================
+   MELHORIAS VISUAIS — USUÁRIOS
+   ========================================================= */
+
+/* Área que reúne os dois grupos, sem cartão externo */
+.pagina-admin #section-users > .admin-panel-card {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Colunas de usuários comuns e prestadores */
+.pagina-admin #section-users > .admin-panel-card > div {
+    align-items: start;
+    gap: 24px !important;
+}
+
+.pagina-admin #section-users > .admin-panel-card > div > section {
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+/* Títulos dos grupos */
+.pagina-admin #section-users > .admin-panel-card > div > section > h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+    font-size: 0.98rem;
+    font-weight: 750;
+}
+
+.pagina-admin #section-users > .admin-panel-card > div > section > h3 svg {
+    width: 21px;
+    height: 21px;
+    color: #3478f6;
+}
+
+/* Cartões individuais dos usuários */
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card {
+    position: relative;
+    gap: 11px;
+
+    padding: 18px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #dce5f7 !important;
+    border-radius: 12px !important;
+
+    box-shadow: 0 2px 8px rgba(11, 19, 43, 0.035) !important;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card:hover {
+    border-color: #bfd2f5 !important;
+    box-shadow: 0 7px 18px rgba(28, 49, 85, 0.075) !important;
+    transform: translateY(-2px);
+}
+
+/* Ícone e identificação */
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card > div:first-child {
+    gap: 13px !important;
+    margin-bottom: 5px !important;
+}
+
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card > div:first-child > div:first-child {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+
+    color: #2867d6 !important;
+    background: linear-gradient(145deg, #e9f0ff, #dce7ff) !important;
+    border: 1px solid #d7e3ff;
+    border-radius: 13px !important;
+}
+
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card > div:first-child svg {
+    width: 22px;
+    height: 22px;
+}
+
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card h4 {
+    color: var(--primary-dark);
+    font-size: 0.93rem;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* Dados cadastrais */
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card p {
+    margin-top: 5px;
+    color: #52627b;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card p strong {
+    color: #1c3155;
+    font-weight: 750;
+}
+
+/* Mensagens quando não existem cadastros */
+.pagina-admin #section-users .admin-empty-message {
+    padding: 17px;
+    color: var(--text-muted);
+    background: #ffffff;
+    border: 1px dashed #cbd7eb;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+/* =========================================================
+   RESPONSIVIDADE DOS NOVOS CARTÕES
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .pagina-admin #section-appointments > .admin-panel-card {
+        padding: 0;
+    }
+
+    .pagina-admin #section-appointments .admin-panel-card > .admin-panel-card {
+        padding: 17px !important;
+    }
+
+    .pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:nth-child(2) {
+        grid-template-columns: 1fr !important;
+    }
+
+    .pagina-admin #section-users > .admin-panel-card {
+        padding: 0;
+    }
+
+    .pagina-admin #section-users > .admin-panel-card > div {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .pagina-admin #section-users > .admin-panel-card > div > section {
+        padding: 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .pagina-admin #section-appointments .admin-panel-card > .admin-panel-card {
+        padding: 14px !important;
+    }
+
+    .pagina-admin #section-appointments .admin-panel-card > .admin-panel-card > div:first-child {
+        align-items: flex-start !important;
+        flex-direction: column;
+    }
+
+    .pagina-admin #section-users > .admin-panel-card {
+        padding: 0;
+    }
+
+    .pagina-admin #section-users > .admin-panel-card > div > section {
+        padding: 0;
+    }
+
+    .pagina-admin #section-users .admin-panel-card > div > section > .admin-panel-card {
+        padding: 14px !important;
+    }
+}

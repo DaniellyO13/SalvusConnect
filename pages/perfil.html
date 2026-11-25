@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1B3A6B">
+    <title>SalvusConnect - Perfil</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="icon" href="../SalvusConnect.jpg" type="image/jpeg">
+
+    <!-- Lucide Icons -->
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="profile-page">
+
+            <nav class="page-navigation" aria-label="Navegação da página">
+                <button
+                    type="button"
+                    class="page-nav-button"
+                    id="btn-voltar">
+
+                    <i data-lucide="arrow-left"></i>
+                    Voltar
+                </button>
+            </nav>
+
+            <header class="profile-page-header">
+                <h1>Meu Perfil</h1>
+            </header>
+
+            <section class="profile-card">
+
+                <div class="profile-header">
+                    <div class="avatar-large">
+                        <span id="profile-avatar-letter">?</span>
+
+                        <button
+                            type="button"
+                            class="avatar-edit-btn"
+                            title="Alterar foto"
+                            aria-label="Alterar foto do perfil">
+
+                            <i data-lucide="camera"></i>
+                        </button>
+                    </div>
+
+                    <div class="profile-meta">
+                        <h2>Carregando...</h2>
+                        <p>Carregando...</p>
+
+                        <span class="badge-role" id="profile-role">
+                            Carregando...
+                        </span>
+                    </div>
+                </div>
+
+                <div
+                    id="profile-message"
+                    class="profile-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden>
+                </div>
+
+                <form
+                    class="profile-form"
+                    id="profile-form"
+                    onsubmit="handleSaveProfile(event)">
+
+                    <div class="form-group">
+                        <label for="profile-cpf">
+                            <i data-lucide="credit-card"></i>
+                            CPF
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-cpf"
+                            name="nr_cpf"
+                            placeholder="000.000.000-00"
+                            maxlength="14"
+                            autocomplete="off"
+                            inputmode="numeric"
+                            oninput="formatarCPF(this)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-cnh">
+                            <i data-lucide="car-front"></i>
+                            CNH
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-cnh"
+                            name="cnh"
+                            maxlength="20"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-cnh-type">
+                            <i data-lucide="badge-check"></i>
+                            Tipo de CNH
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-cnh-type"
+                            name="nm_tipo_cnh"
+                            maxlength="3"
+                            placeholder="Ex.: AB"
+                            autocapitalize="characters">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-phone">
+                            <i data-lucide="phone"></i>
+                            Telefone principal
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="profile-phone"
+                            name="nr_telefone"
+                            placeholder="(11) 99999-9999"
+                            maxlength="15"
+                            autocomplete="tel"
+                            inputmode="tel"
+                            oninput="formatarTelefone(this)">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="profile-bio">
+                            <i data-lucide="file-text"></i>
+                            Sobre mim
+                        </label>
+
+                        <textarea
+                            id="profile-bio"
+                            name="ds_sobre_mim"
+                            rows="3"
+                            maxlength="1000"
+                            placeholder="Conte um pouco sobre você..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button
+                            type="submit"
+                            class="btn-save-profile"
+                            id="btn-save-profile">
+
+                            <i data-lucide="save"></i>
+                            Salvar Perfil
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Antecedentes criminais: exclusivo para prestadores -->
+                <section
+                    class="antecedentes-panel"
+                    id="antecedentes-section"
+                    hidden
+                    aria-labelledby="antecedentes-titulo">
+
+                    <div class="antecedentes-divider"></div>
+
+                    <div class="antecedentes-panel-header">
+                        <div class="antecedentes-icon">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+
+                        <div class="antecedentes-heading">
+                            <h2 id="antecedentes-titulo">
+                                Antecedentes criminais
+                            </h2>
+
+                            <p>
+                                Envie seu documento para análise da equipe
+                                do SalvusConnect.
+                            </p>
+                        </div>
+                    </div>
+
+                    <form
+                        id="antecedentes-form"
+                        class="antecedentes-form"
+                        enctype="multipart/form-data">
+
+                        <label
+                            class="antecedentes-field-label"
+                            for="arquivo-antecedente">
+                            Documento para análise
+                        </label>
+
+                        <div class="antecedentes-upload-area">
+                            <div class="antecedentes-upload-icon">
+                                <i data-lucide="file-up"></i>
+                            </div>
+
+                            <div class="antecedentes-upload-content">
+                                <label
+                                    for="arquivo-antecedente"
+                                    class="antecedentes-upload-title">
+                                    Escolher documento
+                                </label>
+
+                                <p class="antecedentes-upload-description">
+                                    Selecione um arquivo no seu dispositivo.
+                                </p>
+
+                                <p class="antecedentes-file-types">
+                                    PDF, PNG ou JPG · Máximo de 5 MB
+                                </p>
+                            </div>
+
+                            <input
+                                type="file"
+                                id="arquivo-antecedente"
+                                name="antecedente"
+                                accept=".pdf,.png,.jpg,.jpeg"
+                                required>
+                        </div>
+
+                        <div class="antecedentes-actions">
+                            <button
+                                type="submit"
+                                class="btn-save-profile btn-enviar-antecedente"
+                                id="btn-enviar-antecedente">
+
+                                <i data-lucide="upload"></i>
+                                Enviar documento
+                            </button>
+                        </div>
+
+                        <p
+                            id="antecedentes-message"
+                            class="antecedentes-message"
+                            role="status"
+                            aria-live="polite">
+                        </p>
+                    </form>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <script src="../js/perfil.js"></script>
+    <script src="../js/sidebar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botaoVoltar = document.getElementById('btn-voltar');
+
+            if (botaoVoltar) {
+                botaoVoltar.addEventListener('click', () => {
+                    try {
+                        const anterior = new URL(document.referrer);
+
+                        const mesmaOrigem =
+                            anterior.origin === window.location.origin;
+
+                        const paginaAutenticacao =
+                            /\/(login|cadastro)\.html$/i.test(
+                                anterior.pathname
+                            );
+
+                        if (
+                            mesmaOrigem &&
+                            !paginaAutenticacao &&
+                            document.referrer !== window.location.href
+                        ) {
+                            window.history.back();
+                        } else {
+                            window.location.href = 'dashboard.html';
+                        }
+                    } catch {
+                        window.location.href = 'dashboard.html';
+                    }
+                });
+            }
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

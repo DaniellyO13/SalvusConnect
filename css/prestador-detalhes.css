@@ -1,0 +1,1194 @@
+
+/* =====================================================
+   SALVUSCONNECT — DETALHES DO PRESTADOR
+   Identidade visual original do SalvusConnect
+   ===================================================== */
+
+/* CONTEÚDO PRINCIPAL */
+
+.main-container {
+  background: #f4f6fa;
+  min-height: 100vh;
+}
+
+/* BOTÃO VOLTAR */
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 38px;
+  margin-bottom: 20px;
+  padding: 9px 13px;
+  color: var(--primary-blue);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-speed),
+    border-color var(--transition-speed),
+    color var(--transition-speed);
+}
+
+.back-btn:hover {
+  color: #ffffff;
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.back-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* CARD DOS DETALHES DO PRESTADOR */
+
+.provider-header-card {
+  width: 100%;
+  max-width: 760px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.provider-main-info {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.provider-avatar-lg {
+  width: 64px;
+  height: 64px;
+  background-color: #e0e8ff;
+  color: #0b132b;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.provider-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.provider-info h2 {
+  font-size: 1.3rem;
+  color: #0b132b;
+  margin-bottom: 6px;
+}
+
+/* CATEGORIA DO PRESTADOR */
+
+.provider-info .category {
+  font-size: 0.85rem;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* INFORMAÇÕES E AVALIAÇÕES */
+
+.provider-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #0b132b;
+  margin-bottom: 10px;
+}
+
+.provider-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.provider-meta svg {
+  width: 15px;
+  height: 15px;
+}
+
+.provider-meta .star-icon {
+  color: #eab308;
+  fill: #eab308;
+}
+
+/* OCULTAR TELEFONE */
+
+#p-telefone {
+  display: none;
+}
+
+/* BIOGRAFIA */
+
+.provider-info .description {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #0b132b;
+  margin-top: 12px;
+  margin-bottom: 0;
+  margin-left: 0;
+  width: 100%;
+}
+
+.provider-info .description::before {
+  content: "Biografia";
+  display: block;
+  color: #0b132b;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* SEÇÕES DA PÁGINA */
+
+.section-block {
+  margin-bottom: 32px;
+}
+
+.section-block h2 {
+  font-size: 1.2rem;
+  color: #0b132b;
+  margin-bottom: 16px;
+}
+
+/* TÍTULO SERVIÇOS OFERECIDOS */
+
+.provider-header-card + .section-block > h2 {
+  display: block;
+}
+
+/* OCULTAR TEXTO EXPLICATIVO DOS SERVIÇOS */
+
+.provider-header-card + .section-block > p {
+  display: none;
+}
+
+/* GRID DE SERVIÇOS */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 320px), 340px)
+  );
+  justify-content: start;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+}
+
+.service-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  border-color: #c4d2eb;
+  box-shadow: 0 7px 18px rgba(11, 19, 43, 0.06);
+}
+
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.service-header h3 {
+  font-size: 1.05rem;
+  color: #0b132b;
+  text-transform: capitalize;
+}
+
+.service-price {
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  background-color: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin: 8px 0;
+  width: fit-content;
+}
+
+.service-desc {
+  font-size: 0.85rem;
+  color: #454343;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.service-desc::first-letter {
+  text-transform: uppercase;
+}
+
+/* RODAPÉ DO CARTÃO: PREÇO, DURAÇÃO E BOTÃO */
+
+.service-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 4px;
+}
+
+/* PREÇO NA PRIMEIRA LINHA */
+
+.service-footer > .service-price {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: end;
+}
+
+/* DURAÇÃO ABAIXO DO PREÇO */
+
+.service-footer > .duration {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  align-self: start;
+}
+
+/* BOTÃO ALINHADO À DIREITA */
+
+.service-footer > .btn-agendar {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.duration {
+  font-size: 0.8rem;
+  color: #0b132b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.duration svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-agendar {
+  background-color: #0b132b;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.btn-agendar:hover {
+  opacity: 0.9;
+}
+
+.btn-agendar:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   TELA DE SOLICITAÇÃO DE AGENDAMENTO
+   Layout compacto e centralizado
+   ===================================================== */
+
+#tela-agendamento {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  padding-bottom: 18px;
+  box-sizing: border-box;
+}
+
+#tela-agendamento[hidden] {
+  display: none;
+}
+
+/* ALINHAMENTO DOS CARTÕES */
+
+#tela-agendamento .appointment-summary-section,
+#tela-agendamento .appointment-date-card,
+#tela-agendamento .appointment-time-card,
+#tela-agendamento #form-agendamento {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* BOTÃO VOLTAR */
+
+#tela-agendamento > .back-btn {
+  align-self: flex-start;
+  margin-bottom: 0;
+}
+
+/* CABEÇALHO */
+
+#tela-agendamento > .provider-header-card {
+  max-width: none;
+  width: 100%;
+  padding: 11px 14px;
+  margin: 0;
+  border-radius: 9px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+#tela-agendamento > .provider-header-card h1 {
+  font-size: 1.08rem;
+  line-height: 1.35;
+  color: #0b132b;
+  margin-bottom: 3px;
+}
+
+#tela-agendamento > .provider-header-card p {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #454343;
+  margin: 0;
+}
+
+/* RESUMO DA SOLICITAÇÃO */
+
+#tela-agendamento .appointment-summary-section {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  padding: 11px 14px;
+  margin: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+#tela-agendamento .appointment-section-title {
+  font-size: 0.94rem;
+  line-height: 1.35;
+  color: #0b132b;
+  margin-bottom: 7px;
+}
+
+#tela-agendamento .appointment-summary-card {
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#tela-agendamento .appointment-summary-card:hover {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* NOVA ORGANIZAÇÃO DO RESUMO DO SERVIÇO */
+
+#tela-agendamento .appointment-summary-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+#tela-agendamento .appointment-summary-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#tela-agendamento .appointment-summary-card .service-header {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+#tela-agendamento .appointment-summary-card .service-header h3 {
+  font-size: 0.96rem;
+  line-height: 1.4;
+  color: #0b132b;
+  margin: 0;
+}
+
+#tela-agendamento .appointment-summary-card .service-desc {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #454343;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+/* VALOR E DURAÇÃO ALINHADOS À DIREITA */
+
+#tela-agendamento .appointment-summary-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 7px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+#tela-agendamento .appointment-summary-meta .service-price {
+  display: block;
+  color: #2563eb;
+  font-size: 0.96rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#tela-agendamento .appointment-summary-meta .duration {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#tela-agendamento .appointment-summary-meta .duration svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* AVISO DE AGENDAMENTO PENDENTE — DESTAQUE CENTRALIZADO */
+
+#tela-agendamento .appointment-pending-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  padding: 22px 20px;
+  background: linear-gradient(145deg, #f0f5ff 0%, #e0e8ff 100%);
+  border: 1px solid #b9cbed;
+  border-radius: 12px;
+  color: #0b132b;
+  text-align: center;
+  box-shadow: 0 5px 14px rgba(11, 19, 43, 0.07);
+  box-sizing: border-box;
+}
+
+#tela-agendamento .appointment-pending-notice-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  text-align: center;
+}
+
+#tela-agendamento .appointment-pending-notice-heading svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+  color: #2563eb;
+  background: #ffffff;
+  border: 1px solid #cbd9f5;
+  border-radius: 50%;
+  stroke-width: 2.2;
+  box-shadow: 0 3px 9px rgba(37, 99, 235, 0.12);
+  box-sizing: content-box;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+#tela-agendamento .appointment-pending-notice-heading strong {
+  display: block;
+  color: #0b132b;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  line-height: 1.3;
+}
+
+#tela-agendamento .appointment-pending-notice p {
+  max-width: 420px;
+  margin: 0;
+  color: #243653;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* CARTÃO DA DATA */
+
+#tela-agendamento .appointment-date-card {
+  max-width: none;
+  width: 100%;
+  padding: 11px 14px;
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  box-shadow: var(--shadow-sm);
+}
+
+#tela-agendamento .appointment-date-card .appointment-section-title {
+  margin-bottom: 7px;
+}
+
+/* CALENDÁRIO E AVISO LADO A LADO */
+
+#tela-agendamento .appointment-date-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 20px;
+  width: 100%;
+}
+
+/* CAMPO OCULTO QUE ARMAZENA A DATA */
+
+#tela-agendamento #agendamento-data {
+  display: none !important;
+}
+
+/* CALENDÁRIO COMPACTO */
+
+#tela-agendamento .appointment-calendar {
+  width: 100%;
+  max-width: 320px;
+  margin: 0;
+}
+
+#tela-agendamento .appointment-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+#tela-agendamento .appointment-calendar-month {
+  color: #0b132b;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+#tela-agendamento .appointment-calendar-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  padding: 0;
+  color: #0b132b;
+  background: #f4f6fa;
+  border: 1px solid #d5deeb;
+  border-radius: 7px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+#tela-agendamento .appointment-calendar-nav:hover:not(:disabled) {
+  background: #e0e8ff;
+  border-color: #2563eb;
+}
+
+#tela-agendamento .appointment-calendar-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#tela-agendamento .appointment-calendar-weekdays,
+#tela-agendamento .appointment-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+}
+
+#tela-agendamento .appointment-calendar-weekdays {
+  margin-bottom: 4px;
+}
+
+#tela-agendamento .appointment-calendar-weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 22px;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+#tela-agendamento .appointment-calendar-empty {
+  min-height: 30px;
+}
+
+#tela-agendamento .appointment-calendar-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 30px;
+  padding: 3px;
+  color: #0b132b;
+  background: #f4f6fa;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+#tela-agendamento .appointment-calendar-day:hover:not(:disabled):not(.selected) {
+  background: #e0e8ff;
+  border-color: #cbd9f5;
+}
+
+#tela-agendamento .appointment-calendar-day.today:not(.selected) {
+  border-color: #2563eb;
+  font-weight: 700;
+}
+
+/* DIA SELECIONADO — AZUL-MARINHO ORIGINAL */
+
+#tela-agendamento .appointment-calendar-day.selected {
+  color: #ffffff;
+  background: #0b132b;
+  border-color: #0b132b;
+  font-weight: 700;
+}
+
+#tela-agendamento .appointment-calendar-day.selected:hover {
+  background: #14254b;
+  border-color: #14254b;
+}
+
+#tela-agendamento .appointment-calendar-day:disabled {
+  color: #aebbd0;
+  background: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+#tela-agendamento .appointment-calendar-day:focus-visible,
+#tela-agendamento .appointment-calendar-nav:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* CARTÃO DOS HORÁRIOS */
+
+#tela-agendamento .appointment-time-card {
+  max-width: none;
+  width: 100%;
+  padding: 11px 14px;
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  box-shadow: var(--shadow-sm);
+}
+
+#tela-agendamento .appointment-time-card .appointment-section-title {
+  margin-bottom: 5px;
+}
+
+#tela-agendamento .appointment-time-description {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #454343;
+  margin-bottom: 8px;
+}
+
+/* ORGANIZAÇÃO DOS BOTÕES DE HORÁRIO */
+
+#tela-agendamento #horarios-disponiveis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  margin-top: 7px;
+}
+
+#tela-agendamento .btn-horario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0 !important;
+  min-height: 36px !important;
+  padding: 6px 5px !important;
+  border: 1px solid #c5d0e0 !important;
+  border-radius: 7px !important;
+  background: #f4f6fa !important;
+  color: #0b132b !important;
+  font-family: inherit;
+  font-size: 0.84rem !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#tela-agendamento .btn-horario:hover {
+  background: #e0e8ff !important;
+  border-color: #2563eb !important;
+}
+
+/* HORÁRIO SELECIONADO — AZUL-MARINHO ORIGINAL */
+
+#tela-agendamento .btn-horario.selected,
+#tela-agendamento .btn-horario[aria-pressed="true"] {
+  background: #0b132b !important;
+  border-color: #0b132b !important;
+  color: #ffffff !important;
+  box-shadow: 0 3px 8px rgba(11, 19, 43, 0.2);
+}
+
+#tela-agendamento .btn-horario.selected:hover {
+  background: #14254b !important;
+  border-color: #14254b !important;
+}
+
+#tela-agendamento .btn-horario:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* TEXTO DO HORÁRIO SELECIONADO */
+
+#tela-agendamento #horario-selecionado {
+  min-height: 18px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: #0b132b;
+  font-weight: 600;
+}
+
+/* FORMULÁRIO */
+
+#tela-agendamento #form-agendamento {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* CAMPO DE VEÍCULO */
+
+#tela-agendamento .appointment-vehicle-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 11px 14px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+
+#tela-agendamento .appointment-vehicle-label {
+  font-size: 0.9rem;
+  color: #0b132b;
+  font-weight: 700;
+}
+
+#tela-agendamento .appointment-vehicle-select {
+  width: 100%;
+  min-height: 38px;
+  padding: 7px 10px;
+  font-size: 0.84rem;
+  color: #0b132b;
+  background: #ffffff;
+  border: 1px solid #aebbd0;
+  border-radius: 7px;
+  font-family: inherit;
+}
+
+/* CAMPO DE OBSERVAÇÕES */
+
+#tela-agendamento .appointment-observations-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 11px 14px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+
+#tela-agendamento .appointment-observations-label {
+  font-size: 0.9rem;
+  color: #0b132b;
+  font-weight: 700;
+}
+
+#tela-agendamento .appointment-observations-input {
+  display: block;
+  width: 100%;
+  min-height: 72px;
+  padding: 9px 10px;
+  color: #0b132b;
+  background: #ffffff;
+  border: 1px solid #aebbd0;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+/* MENSAGENS DO FORMULÁRIO */
+
+#tela-agendamento #agendamento-mensagem {
+  min-height: 0;
+  margin: 0;
+  color: #0b132b;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+/* BOTÃO FINAL */
+
+#tela-agendamento .appointment-form-actions {
+  display: flex;
+  justify-content: stretch;
+  width: 100%;
+}
+
+#tela-agendamento .appointment-form-actions .btn-agendar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 9px 16px;
+  background: #0b132b;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#tela-agendamento .appointment-form-actions .btn-agendar:hover {
+  background: #14254b;
+  box-shadow: 0 4px 10px rgba(11, 19, 43, 0.18);
+}
+
+#tela-agendamento .appointment-form-actions .btn-agendar:disabled {
+  background: #64748b;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* NOTIFICAÇÕES DE SUCESSO NÃO SÃO ALTERADAS AQUI */
+
+/* LISTA DE AVALIAÇÕES */
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0b132b;
+}
+
+.stars {
+  color: #eab308;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+/* ESTRELAS DAS AVALIAÇÕES */
+
+.review-stars {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.review-stars-filled {
+  color: #eab308;
+}
+
+.review-stars-empty {
+  color: #cbd5e1;
+}
+
+.tag-service {
+  display: inline-block;
+  border: 1px solid rgba(144, 180, 241, 0.576);
+  color: #2563eb;
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.review-text {
+  font-size: 0.88rem;
+  color: #121212;
+  margin-bottom: 4px;
+}
+
+.review-date {
+  font-size: 0.75rem;
+  color: #626262;
+}
+
+/* =====================================================
+   RESPONSIVIDADE
+   ===================================================== */
+
+@media (max-width: 760px) {
+  #tela-agendamento {
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  #tela-agendamento .appointment-summary-section,
+  #tela-agendamento .appointment-date-card,
+  #tela-agendamento .appointment-time-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .provider-header-card {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .provider-main-info {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .provider-info {
+    width: 100%;
+  }
+
+  .provider-info .description {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .services-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-footer {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .btn-agendar {
+    min-height: 40px;
+  }
+
+  /* CABEÇALHO DO AGENDAMENTO */
+
+  #tela-agendamento > .provider-header-card {
+    padding: 11px 12px;
+  }
+
+  #tela-agendamento > .provider-header-card h1 {
+    font-size: 1.05rem;
+  }
+
+  /* CARTÕES DO AGENDAMENTO */
+
+  #tela-agendamento .appointment-summary-section,
+  #tela-agendamento .appointment-date-card,
+  #tela-agendamento .appointment-time-card,
+  #tela-agendamento .appointment-vehicle-field,
+  #tela-agendamento .appointment-observations-field {
+    padding: 10px 12px;
+  }
+
+  /* RESUMO DO SERVIÇO EM TELAS MENORES */
+
+  #tela-agendamento .appointment-summary-content {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  #tela-agendamento .appointment-summary-meta {
+    gap: 6px;
+  }
+
+  #tela-agendamento .appointment-summary-meta .service-price {
+    font-size: 0.88rem;
+  }
+
+  #tela-agendamento .appointment-summary-meta .duration {
+    font-size: 0.76rem;
+  }
+
+  /* CALENDÁRIO E AVISO EMPILHADOS EM TELAS MENORES */
+
+  #tela-agendamento .appointment-date-layout {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+  }
+
+  #tela-agendamento .appointment-calendar {
+    max-width: 100%;
+  }
+
+  #tela-agendamento .appointment-pending-notice {
+    width: 100%;
+    padding: 20px 16px;
+  }
+
+  #tela-agendamento .appointment-calendar-weekdays,
+  #tela-agendamento .appointment-calendar-days {
+    gap: 3px;
+  }
+
+  #tela-agendamento .appointment-calendar-day {
+    min-height: 30px;
+    font-size: 0.78rem;
+  }
+
+  /* HORÁRIOS */
+
+  #tela-agendamento #horarios-disponiveis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  #tela-agendamento .btn-horario {
+    min-height: 36px !important;
+  }
+
+  /* OBSERVAÇÕES */
+
+  #tela-agendamento .appointment-observations-input {
+    min-height: 68px;
+  }
+
+  /* BOTÃO DE CONFIRMAÇÃO */
+
+  #tela-agendamento .appointment-form-actions .btn-agendar {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  #tela-agendamento .appointment-summary-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  #tela-agendamento .appointment-summary-meta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  #tela-agendamento #horarios-disponiveis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

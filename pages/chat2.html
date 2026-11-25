@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SalvusConnect - Mensagens</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/chat.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <!-- Lucide Icons -->
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Sidebar Retrátil -->
+    <aside class="sidebar" id="sidebar">
+
+        <div>
+
+            <div class="sidebar-header">
+
+                <div class="brand">
+
+                    <div class="brand-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+
+                    <span>SalvusConnect</span>
+
+                </div>
+
+                <button
+                    class="close-btn"
+                    onclick="toggleMenu()">
+
+                    <i data-lucide="x"></i>
+
+                </button>
+
+            </div>
+
+            <nav class="nav-links">
+
+                <a
+                    href="dashboard.html"
+                    class="nav-item">
+
+                    <i data-lucide="home"></i>
+
+                    Início
+
+                </a>
+
+                <a
+                    href="servicos.html"
+                    class="nav-item">
+
+                    <i data-lucide="wrench"></i>
+
+                    Serviços
+
+                </a>
+
+                <a
+                    href="agendamentos.html"
+                    class="nav-item">
+
+                    <i data-lucide="calendar"></i>
+
+                    Agendamentos
+
+                </a>
+
+                <a
+                    href="historico.html"
+                    class="nav-item">
+
+                    <i data-lucide="history"></i>
+
+                    Histórico
+
+                </a>
+
+                <a
+                    href="chat.html"
+                    class="nav-item active">
+
+                    <i data-lucide="message-square"></i>
+
+                    Mensagens
+
+                </a>
+
+                <a
+                    href="feedbacks.html"
+                    class="nav-item">
+
+                    <i data-lucide="message-square"></i>
+
+                    Feedbacks
+
+                </a>
+
+                <a
+                    href="veiculos.html"
+                    class="nav-item">
+
+                    <i data-lucide="car"></i>
+
+                    Veículos
+
+                </a>
+
+                <a
+                    href="perfil.html"
+                    class="nav-item">
+
+                    <i data-lucide="user"></i>
+
+                    Perfil
+
+                </a>
+
+                <a
+                    href="configuracoes.html"
+                    class="nav-item">
+
+                    <i data-lucide="settings"></i>
+
+                    Configurações
+
+                </a>
+
+            </nav>
+
+        </div>
+
+        <div class="sidebar-footer">
+
+            <div class="user-profile">
+
+                <div class="avatar">
+
+                    <i data-lucide="user"></i>
+
+                </div>
+
+                <div class="user-info">
+
+                    <!--
+                    <span class="user-name">Lucas Gabriel</span>
+                    <span class="user-email">
+                        lucasglimasousa12@gmail.com
+                    </span>
+                    -->
+
+                </div>
+
+            </div>
+
+            <a
+                href="login.html"
+                class="logout-btn">
+
+                <i data-lucide="log-out"></i>
+
+                Sair
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- Overlay Mobile -->
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="toggleMenu()">
+    </div>
+
+    <!-- Navbar Mobile -->
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <i data-lucide="heart"></i>
+
+            </div>
+
+            <span>SalvusConnect</span>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            onclick="toggleMenu()">
+
+            <i data-lucide="menu"></i>
+
+        </button>
+
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="chat-page">
+
+        <!-- Cabeçalho -->
+        <section class="page-header">
+
+            <p class="breadcrumb">
+                Página Inicial › Mensagens
+            </p>
+
+            <h1>
+                Mensagens
+            </h1>
+
+        </section>
+
+        <!-- Área principal do chat -->
+        <section class="chat-layout">
+
+            <!-- Lista de conversas -->
+            <aside
+                class="conversation-list"
+                id="conversationList">
+
+                <!-- Estado de carregamento -->
+                <div
+                    class="loading-state"
+                    id="loadingState">
+
+                    <div class="conversation-skeleton"></div>
+                    <div class="conversation-skeleton"></div>
+                    <div class="conversation-skeleton"></div>
+
+                </div>
+
+                <!-- Estado sem conversas -->
+                <div
+                    class="empty-conversations"
+                    id="emptyConversations">
+
+                    <div class="empty-icon">
+                        💬
+                    </div>
+
+                    <h2>
+                        Sem conversas
+                    </h2>
+
+                    <p>
+                        Inicie uma conversa na página de um prestador.
+                    </p>
+
+                </div>
+
+                <!-- Conversas -->
+                <div
+                    class="conversations"
+                    id="conversations">
+                </div>
+
+            </aside>
+
+            <!-- Painel da conversa -->
+            <section
+                class="messages-panel"
+                id="messagesPanel">
+
+                <!-- Cabeçalho da conversa -->
+                <header class="chat-header">
+
+                    <button
+                        type="button"
+                        id="backButton"
+                        class="back-button"
+                        aria-label="Voltar">
+
+                        ←
+
+                    </button>
+
+                    <div class="chat-user-avatar">
+                        👤
+                    </div>
+
+                    <p
+                        class="chat-user-name"
+                        id="chatUserName">
+
+                        Selecione uma conversa
+
+                    </p>
+
+                </header>
+
+                <!-- Área das mensagens -->
+                <div
+                    class="messages-area"
+                    id="messagesArea">
+
+                    <!-- Estado inicial -->
+                    <div
+                        class="no-conversation"
+                        id="noConversation">
+
+                        <div class="no-conversation-icon">
+                            💬
+                        </div>
+
+                        <p>
+                            Selecione uma conversa para começar
+                        </p>
+
+                    </div>
+
+                    <!-- Mensagens -->
+                    <div
+                        class="messages-container"
+                        id="messagesContainer">
+                    </div>
+
+                    <div
+                        id="messagesEnd">
+                    </div>
+
+                </div>
+
+                <!-- Área de envio -->
+                <div class="message-composer">
+
+                    <!-- Aviso de bloqueio -->
+                    <div
+                        class="blocked-warning"
+                        id="blockedWarning">
+
+                        <span class="warning-icon">
+                            ⚠
+                        </span>
+
+                        <span>
+                            Não é permitido compartilhar e-mail,
+                            telefone ou redes sociais.
+                        </span>
+
+                    </div>
+
+                    <!-- Mensagens rápidas -->
+                    <div
+                        class="quick-messages"
+                        id="quickMessages">
+
+                        <button
+                            type="button"
+                            class="quick-message"
+                            data-message="Olá! 👋">
+
+                            Olá! 👋
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="quick-message"
+                            data-message="Estou chegando">
+
+                            Estou chegando
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="quick-message"
+                            data-message="Cheguei ao local">
+
+                            Cheguei ao local
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="quick-message"
+                            data-message="Tudo certo!">
+
+                            Tudo certo!
+
+                        </button>
+
+                    </div>
+
+                    <!-- Controles -->
+                    <div class="message-controls">
+
+                        <button
+                            type="button"
+                            id="quickMessagesButton"
+                            class="icon-button"
+                            title="Mensagens rápidas"
+                            aria-label="Mensagens rápidas">
+
+                            ⚡
+
+                        </button>
+
+                        <input
+                            type="text"
+                            id="messageInput"
+                            class="message-input"
+                            placeholder="Digite sua mensagem..."
+                            autocomplete="off">
+
+                        <button
+                            type="button"
+                            id="sendButton"
+                            class="send-button"
+                            aria-label="Enviar mensagem">
+
+                            ➤
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Estado quando nenhuma conversa está selecionada -->
+            <section
+                class="no-selected-chat"
+                id="noSelectedChat">
+
+                <div class="no-selected-content">
+
+                    <div class="large-message-icon">
+                        💬
+                    </div>
+
+                    <p>
+                        Selecione uma conversa para começar
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript do Chat -->
+    <script src="../js/chat.js"></script>
+
+    <script>
+
+        lucide.createIcons();
+
+        function toggleMenu() {
+
+            const sidebar =
+                document.getElementById('sidebar');
+
+            const overlay =
+                document.getElementById('overlay');
+
+            if (sidebar) {
+                sidebar.classList.toggle('active');
+            }
+
+            if (overlay) {
+                overlay.classList.toggle('active');
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

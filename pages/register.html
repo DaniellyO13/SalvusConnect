@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1833">
+
+    <title>Criar conta | SalvusConnect</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/SistemaDeLogin.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+    <!-- Ícones Lucide -->
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="register-page">
+
+    <main class="auth-wrapper">
+
+        <!-- Painel da marca -->
+        <aside class="auth-banner">
+
+            <div class="brand-hero">
+
+                <div class="brand-icon-lg" aria-hidden="true">
+                    <i data-lucide="heart-handshake"></i>
+                </div>
+
+                <a
+                    href="login.html"
+                    class="brand-name"
+                    aria-label="SalvusConnect - página de login">
+
+                    <span class="brand-salvus">Salvus</span><span class="brand-connect">Connect</span>
+
+                </a>
+
+                <div class="brand-divider"></div>
+
+                <h1>Conexões que cuidam.</h1>
+
+                <p>
+                    Aproximando pessoas, facilitando cuidados e
+                    construindo relações de confiança.
+                </p>
+
+            </div>
+
+            <div class="banner-footer">
+                <span class="banner-dot"></span>
+                <span>Cuidado, confiança e conexão.</span>
+            </div>
+
+        </aside>
+
+        <!-- Área do cadastro -->
+        <section class="auth-content">
+
+            <div class="auth-card register-card">
+
+                <!-- Cabeçalho -->
+                <header class="auth-header">
+
+                    <span class="auth-eyebrow">CRIE SUA CONTA</span>
+
+                    <h2>Criar conta</h2>
+
+                    <p id="subtitle-type">
+                        Cadastro de Usuário
+                    </p>
+
+                </header>
+
+                <!-- Mensagens do cadastro -->
+                <div
+                    id="form-message"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden>
+                </div>
+
+                <!-- Formulário -->
+                <form
+                    id="register-form"
+                    class="auth-form"
+                    action="../php/cadastro.php"
+                    method="POST"
+                    autocomplete="on">
+
+                    <!-- Tipo do usuário -->
+                    <input
+                        type="hidden"
+                        name="cd_tipo_usuario"
+                        id="cd_tipo_usuario"
+                        value="3">
+
+                    <!-- Nome e e-mail -->
+                    <div class="form-section">
+
+                        <div class="form-grid-2">
+
+                            <div class="form-group">
+
+                                <label for="nm_nome">
+                                    Nome completo *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nm_nome"
+                                    name="nm_nome"
+                                    maxlength="100"
+                                    placeholder="Seu nome completo"
+                                    autocomplete="name"
+                                    required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    E-mail *
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    maxlength="150"
+                                    placeholder="seu@email.com"
+                                    autocomplete="email"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Senhas -->
+                    <div class="form-section">
+
+                        <div class="form-grid-2">
+
+                            <div class="form-group">
+
+                                <label for="senha">
+                                    Cadastrar senha *
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="senha"
+                                    name="senha"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    placeholder="Mínimo de 8 caracteres"
+                                    required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="confirmar_senha">
+                                    Repetir senha *
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="confirmar_senha"
+                                    name="confirmar_senha"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    placeholder="Digite a senha novamente"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <p class="field-help">
+                            Utilize pelo menos 8 caracteres para sua senha.
+                        </p>
+
+                    </div>
+
+                    <!-- CPF e CNH -->
+                    <div class="form-section">
+
+                        <div class="form-grid-2">
+
+                            <div class="form-group">
+
+                                <label for="nr_cpf">
+                                    CPF
+                                    <span class="optional-label">(opcional)</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nr_cpf"
+                                    name="nr_cpf"
+                                    inputmode="numeric"
+                                    maxlength="14"
+                                    placeholder="000.000.000-00">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="cnh">
+                                    Número da CNH
+                                    <span class="optional-label">(opcional)</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="cnh"
+                                    name="cnh"
+                                    maxlength="20"
+                                    placeholder="Número da CNH">
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group cnh-category">
+
+                            <label for="nm_tipo_cnh">
+                                Categoria da CNH
+                            </label>
+
+                            <select
+                                id="nm_tipo_cnh"
+                                name="nm_tipo_cnh">
+
+                                <option value="">Selecione</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="AB">AB</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Contatos adicionais de clientes -->
+                    <div
+                        class="form-section client-contact-section"
+                        id="client-contact-section"
+                        data-client-contact-grid>
+
+                        <div class="section-heading">
+
+                            <i data-lucide="phone" aria-hidden="true"></i>
+
+                            <div>
+                                <h3>Contatos adicionais</h3>
+
+                                <p>
+                                    Informações opcionais para facilitar o contato.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="form-grid-2">
+
+                            <div
+                                class="form-group"
+                                data-client-phone>
+
+                                <label for="telefone">
+                                    Telefone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="telefone"
+                                    name="telefone"
+                                    inputmode="tel"
+                                    maxlength="15"
+                                    placeholder="(11) 99999-9999"
+                                    autocomplete="tel">
+
+                            </div>
+
+                            <div
+                                class="form-group"
+                                data-client-phone>
+
+                                <label for="telefone_familiar">
+                                    Telefone familiar
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="telefone_familiar"
+                                    name="telefone_familiar"
+                                    inputmode="tel"
+                                    maxlength="15"
+                                    placeholder="(11) 99999-9999">
+
+                            </div>
+
+                            <div
+                                class="form-group full-width"
+                                data-client-phone>
+
+                                <label for="telefone_terceiros">
+                                    Telefone de terceiros
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="telefone_terceiros"
+                                    name="telefone_terceiros"
+                                    inputmode="tel"
+                                    maxlength="15"
+                                    placeholder="(11) 99999-9999">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Botão de cadastro -->
+                    <button
+                        type="submit"
+                        class="btn-primary submit-button"
+                        id="submit-button">
+
+                        <span>Criar minha conta</span>
+
+                        <i data-lucide="arrow-right" aria-hidden="true"></i>
+
+                    </button>
+
+                </form>
+
+                <!-- Voltar à seleção do tipo -->
+                <div class="register-navigation">
+
+                    <a
+                        href="tipo-usuario.html"
+                        class="register-back-link">
+
+                        <i data-lucide="arrow-left" aria-hidden="true"></i>
+
+                        Selecionar tipo de usuário
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Acesso ao login -->
+            <p class="auth-footer-text">
+                Já tem uma conta?
+                <a href="login.html">Entrar</a>
+            </p>
+
+            <p class="auth-copyright">
+                SalvusConnect · Cuidado que aproxima.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript do cadastro -->
+    <script src="../js/register.js"></script>
+
+</body>
+</html>

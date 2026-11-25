@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SalvusConnect - Painel</title>
+
+    <!-- Estilos globais e específicos do dashboard -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <!-- Ícones Lucide -->
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+    <!-- Sidebar, navbar mobile e overlay compartilhados -->
+    <!-- A estrutura é criada pelo sidebar.js -->
+
+    <main class="main-container">
+
+        <!-- Boas-vindas -->
+        <section class="hero-card">
+
+            <div class="hero-content">
+                <h1 id="welcome-title">Bem-vindo(a)!</h1>
+
+                <p>
+                    Agende serviços e acompanhe seus veículos.
+                </p>
+            </div>
+
+            <a href="servicos.html" class="btn-new-appointment">
+                Novo Agendamento
+            </a>
+
+        </section>
+
+        <!-- Indicadores -->
+        <section class="stats-grid" aria-label="Resumo da conta">
+
+            <article class="stat-card card-blue-1">
+
+                <div class="icon-bg">
+                    <i data-lucide="calendar" aria-hidden="true"></i>
+                </div>
+
+                <div>
+                    <div class="value" id="stat-agendamentos">0</div>
+                    <div class="label">Agendamentos</div>
+                </div>
+
+            </article>
+
+            <article class="stat-card card-blue-2">
+
+                <div class="icon-bg">
+                    <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                </div>
+
+                <div>
+                    <div class="value" id="stat-concluidos">0</div>
+                    <div class="label">Concluídos</div>
+                </div>
+
+            </article>
+
+            <article class="stat-card card-blue-3">
+
+                <div class="icon-bg">
+                    <i data-lucide="car" aria-hidden="true"></i>
+                </div>
+
+                <div>
+                    <div class="value" id="stat-veiculos">0</div>
+                    <div class="label">Veículos</div>
+                </div>
+
+            </article>
+
+            <article class="stat-card card-blue-4">
+
+                <div class="icon-bg">
+                    <i data-lucide="wrench" aria-hidden="true"></i>
+                </div>
+
+                <div>
+                    <div class="value" id="stat-total">0</div>
+                    <div class="label">Total</div>
+                </div>
+
+            </article>
+
+        </section>
+
+        <!-- Atalhos rápidos -->
+        <section class="actions-list" aria-label="Acessos rápidos">
+
+            <a href="servicos.html" class="action-card">
+
+                <div class="action-left">
+                    <div class="action-icon">
+                        <i data-lucide="wrench" aria-hidden="true"></i>
+                    </div>
+
+                    <span>Agendar Serviço</span>
+                </div>
+
+                <i
+                    data-lucide="arrow-right"
+                    class="arrow-icon"
+                    aria-hidden="true">
+                </i>
+
+            </a>
+
+            <a href="veiculos.html" class="action-card">
+
+                <div class="action-left">
+                    <div class="action-icon">
+                        <i data-lucide="car" aria-hidden="true"></i>
+                    </div>
+
+                    <span>Meus Veículos</span>
+                </div>
+
+                <i
+                    data-lucide="arrow-right"
+                    class="arrow-icon"
+                    aria-hidden="true">
+                </i>
+
+            </a>
+
+            <a href="historico.html" class="action-card">
+
+                <div class="action-left">
+                    <div class="action-icon">
+                        <i data-lucide="history" aria-hidden="true"></i>
+                    </div>
+
+                    <span>Histórico</span>
+                </div>
+
+                <i
+                    data-lucide="arrow-right"
+                    class="arrow-icon"
+                    aria-hidden="true">
+                </i>
+
+            </a>
+
+        </section>
+
+        <!-- Próximos agendamentos -->
+        <section class="upcoming-section">
+
+            <div class="appointments-header">
+
+                <h2>Próximos Agendamentos</h2>
+
+                <a href="agendamentos.html" class="see-all">
+                    Ver todos
+                    <i data-lucide="arrow-right" class="icon-sm" aria-hidden="true"></i>
+                </a>
+
+            </div>
+
+            <div class="empty-state" id="upcoming-empty">
+
+                <div class="empty-state-icon">
+                    <i data-lucide="calendar" aria-hidden="true"></i>
+                </div>
+
+                <p>Nenhum agendamento pendente.</p>
+
+            </div>
+
+            <!--
+                Os agendamentos reais poderão ser exibidos aqui
+                quando a integração com o banco estiver pronta.
+            -->
+
+        </section>
+
+    </main>
+
+    <!-- Menu lateral compartilhado -->
+    <script src="../js/sidebar.js"></script>
+
+    <!-- Dados da sessão do usuário -->
+    <script src="../js/dashboard.js"></script>
+
+    <!-- Inicialização dos ícones -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>

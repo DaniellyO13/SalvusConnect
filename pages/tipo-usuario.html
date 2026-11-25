@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1833">
+
+    <title>Criar conta | SalvusConnect</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/SistemaDeLogin.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="auth-page type-selection-page">
+
+    <main class="auth-wrapper">
+
+        <!-- Painel da marca -->
+        <aside class="auth-banner">
+
+            <div class="brand-hero">
+
+                <div class="brand-icon-lg" aria-hidden="true">
+                    <i data-lucide="heart-handshake"></i>
+                </div>
+
+                <a
+                    href="login.html"
+                    class="brand-name"
+                    aria-label="SalvusConnect - página de login">
+
+                    <span class="brand-salvus">Salvus</span><span class="brand-connect">Connect</span>
+
+                </a>
+
+                <div class="brand-divider"></div>
+
+                <h1>Conexões que cuidam.</h1>
+
+                <p>
+                    Aproximando pessoas, facilitando cuidados e construindo
+                    relações de confiança.
+                </p>
+
+            </div>
+
+            <div class="banner-footer">
+                <span class="banner-dot"></span>
+                <span>Cuidado, confiança e conexão.</span>
+            </div>
+
+        </aside>
+
+        <!-- Seleção do tipo de conta -->
+        <section class="auth-content">
+
+            <div class="auth-card">
+
+                <header class="auth-header">
+
+                    <span class="auth-eyebrow">
+                        CRIE SUA CONTA
+                    </span>
+
+                    <h2>Como deseja participar?</h2>
+
+                    <p>
+                        Selecione o tipo de usuário para continuar seu cadastro.
+                    </p>
+
+                </header>
+
+                <div class="user-type-grid">
+
+                    <a
+                        href="register.html?type=cliente"
+                        class="type-card">
+
+                        <div class="type-icon" aria-hidden="true">
+                            <i data-lucide="users"></i>
+                        </div>
+
+                        <span>Cliente</span>
+
+                        <p>
+                            Encontre serviços e conecte-se com prestadores.
+                        </p>
+
+                        <span class="type-card-action">
+                            Criar conta
+                            <i data-lucide="arrow-right"></i>
+                        </span>
+
+                    </a>
+
+                    <a
+                        href="register.html?type=prestador"
+                        class="type-card">
+
+                        <div class="type-icon" aria-hidden="true">
+                            <i data-lucide="user-round"></i>
+                        </div>
+
+                        <span>Prestador</span>
+
+                        <p>
+                            Ofereça seus serviços e conecte-se com clientes.
+                        </p>
+
+                        <span class="type-card-action">
+                            Criar conta
+                            <i data-lucide="arrow-right"></i>
+                        </span>
+
+                    </a>
+
+                </div>
+
+                <div class="type-selection-note">
+                    <i data-lucide="shield-check" aria-hidden="true"></i>
+                    <span>Escolha a opção que corresponde ao seu perfil.</span>
+                </div>
+
+            </div>
+
+            <p class="auth-footer-text">
+                Já tem uma conta?
+                <a href="login.html">Entrar</a>
+            </p>
+
+            <p class="auth-copyright">
+                SalvusConnect · Cuidado que aproxima.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- Inicialização dos ícones, sem arquivo JS adicional -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>

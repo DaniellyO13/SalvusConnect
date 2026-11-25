@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1B3A6B">
+
+    <title>SalvusConnect - Agendamentos</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/agendamentos.css">
+    <link rel="icon" href="../../SalvusConnect.jpg" type="image/jpeg">
+
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+
+    <style>
+        .appointment-card.hidden,
+        .empty-state.hidden,
+        .cancel-modal-overlay.hidden {
+            display: none !important;
+        }
+
+        .appointment-card {
+            margin-bottom: 16px;
+        }
+
+        .empty-state {
+            padding: 30px 16px;
+            text-align: center;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .btn-cancelar:disabled,
+        .cancel-modal-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main-container appointments-page">
+
+        <header class="page-header">
+            <nav class="page-navigation" aria-label="Navegação da página">
+                <button class="page-nav-button" type="button" id="btn-voltar">
+                    <i data-lucide="arrow-left" aria-hidden="true"></i>
+                    <span>Voltar</span>
+                </button>
+            </nav>
+
+            <h1>Agendamentos</h1>
+
+            <p class="appointments-subtitle">
+                Acompanhe seus serviços agendados.
+            </p>
+        </header>
+
+        <nav class="tabs-container" aria-label="Filtrar agendamentos">
+            <button
+                class="tab-btn active"
+                type="button"
+                data-filter="pendentes"
+                aria-pressed="true">
+                Pendentes
+            </button>
+
+            <button
+                class="tab-btn"
+                type="button"
+                data-filter="agendados"
+                aria-pressed="false">
+                Agendados
+            </button>
+
+            <button
+                class="tab-btn"
+                type="button"
+                data-filter="andamento"
+                aria-pressed="false">
+                Em andamento
+            </button>
+
+            <button
+                class="tab-btn"
+                type="button"
+                data-filter="concluidos"
+                aria-pressed="false">
+                Concluídos
+            </button>
+
+            <button
+                class="tab-btn"
+                type="button"
+                data-filter="todos"
+                aria-pressed="false">
+                Todos
+            </button>
+        </nav>
+
+        <section id="appointments-list" aria-live="polite"></section>
+
+        <section class="empty-state hidden" id="empty-state">
+            <i data-lucide="calendar" aria-hidden="true"></i>
+
+            <h2>Nenhum agendamento</h2>
+
+            <p>Você não possui agendamentos neste status.</p>
+        </section>
+
+    </main>
+
+    <div
+        class="cancel-modal-overlay hidden"
+        id="cancel-modal"
+        aria-hidden="true">
+
+        <section
+            class="cancel-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cancel-modal-title"
+            aria-describedby="cancel-modal-message">
+
+            <div class="cancel-modal-icon">
+                <i data-lucide="calendar-x" aria-hidden="true"></i>
+            </div>
+
+            <div class="cancel-modal-content">
+                <h2 id="cancel-modal-title">
+                    Cancelar agendamento?
+                </h2>
+
+                <p id="cancel-modal-message">
+                    Deseja realmente cancelar este agendamento?
+                </p>
+            </div>
+
+            <div class="cancel-modal-actions">
+                <button
+                    type="button"
+                    class="cancel-modal-btn cancel-modal-back"
+                    id="cancel-modal-back">
+                    Voltar
+                </button>
+
+                <button
+                    type="button"
+                    class="cancel-modal-btn cancel-modal-confirm"
+                    id="cancel-modal-confirm">
+                    Confirmar cancelamento
+                </button>
+            </div>
+
+        </section>
+    </div>
+
+    <script src="../js/agendamentos.js"></script>
+    <script src="../js/sidebar.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botaoVoltar = document.getElementById("btn-voltar");
+
+            botaoVoltar?.addEventListener("click", () => {
+                let anterior = null;
+
+                try {
+                    anterior = new URL(document.referrer);
+                } catch {
+                    anterior = null;
+                }
+
+                const paginaInterna =
+                    anterior &&
+                    anterior.origin === window.location.origin &&
+                    anterior.pathname !== window.location.pathname &&
+                    /\/pages\//i.test(anterior.pathname) &&
+                    !/\/(login|cadastro|register)\.html$/i.test(
+                        anterior.pathname
+                    );
+
+                if (paginaInterna && window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    window.location.href = "dashboard.html";
+                }
+            });
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

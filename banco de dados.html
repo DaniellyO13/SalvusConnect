@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1B3A6B">
+  <title>SalvusConnect - Script do Banco de Dados</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; color: #1a2a4a; line-height: 1.6; }
+    header { background: linear-gradient(135deg, #1B3A6B 0%, #2D5A9E 100%); color: white; padding: 40px 20px; text-align: center; }
+    header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header p { margin-top: 8px; font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+    .notice { background: #fff; border: 1px solid #e2e8f0; border-left: 5px solid #2D5A9E; border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; color: #4a5e7a; font-size: 0.9rem; }
+    .notice strong { color: #1B3A6B; }
+    .notice.warning { border-left-color: #d97706; }
+    .summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
+    .summary-card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e8eef5; }
+    .summary-card .table-icon { font-size: 2rem; margin-bottom: 8px; }
+    .summary-card h4 { color: #1B3A6B; font-size: 0.95rem; font-weight: 700; overflow-wrap: anywhere; }
+    .summary-card p { font-size: 0.75rem; color: #94a3b8; margin-top: 4px; }
+    .er-section { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 30px; margin-bottom: 30px; }
+    .er-section h2 { font-size: 1.3rem; color: #1B3A6B; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e8eef5; }
+    .er-diagram { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; margin-bottom: 15px; }
+    .er-box { background: #1B3A6B; color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-align: center; min-width: 120px; overflow-wrap: anywhere; box-shadow: 0 2px 8px rgba(27,58,107,0.3); }
+    .er-arrow { display: flex; align-items: center; justify-content: center; color: #6B8AB5; font-size: 1.1rem; font-weight: bold; }
+    .er-relations { margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; }
+    .er-relations li { list-style: none; padding: 6px 0; font-size: 0.88rem; color: #4a5e7a; overflow-wrap: anywhere; }
+    .er-relations li::before { content: "→ "; color: #2D5A9E; font-weight: bold; }
+    .tables-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 24px; margin-bottom: 30px; }
+    .table-card { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; border: 1px solid #e8eef5; min-width: 0; }
+    .table-header { background: #1B3A6B; color: white; padding: 16px 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .table-header .icon { font-size: 1.3rem; }
+    .table-header h3 { font-size: 1.05rem; font-weight: 700; overflow-wrap: anywhere; }
+    .table-header .desc { margin-left: auto; font-size: 0.75rem; opacity: 0.7; font-weight: 400; }
+    .table-body table { width: 100%; border-collapse: collapse; }
+    .table-body th { background: #f1f5f9; padding: 8px 12px; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; border-bottom: 2px solid #e2e8f0; }
+    .table-body td { padding: 10px 12px; font-size: 0.82rem; border-bottom: 1px solid #f1f5f9; color: #334155; overflow-wrap: anywhere; }
+    .table-body tr:last-child td { border-bottom: none; }
+    .type-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; font-family: 'Courier New', monospace; overflow-wrap: anywhere; }
+    .type-string { background: #dbeafe; color: #1e40af; }
+    .type-number { background: #fef3c7; color: #92400e; }
+    .type-date { background: #d1fae5; color: #065f46; }
+    .type-enum { background: #fce7f3; color: #9d174d; }
+    .type-text { background: #e0e7ff; color: #3730a3; }
+    .type-time { background: #fed7aa; color: #9a3412; }
+    .pk-badge, .fk-badge, .unique-badge { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 0.62rem; font-weight: 700; margin-left: 4px; white-space: nowrap; }
+    .pk-badge { background: #fbbf24; color: #78350f; }
+    .fk-badge { background: #a78bfa; color: #4c1d95; }
+    .unique-badge { background: #38bdf8; color: #0369a1; }
+    .table-note { padding: 15px; font-size: 0.85rem; color: #4a5e7a; border-top: 1px solid #f1f5f9; }
+    .sql-section { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; margin-bottom: 30px; }
+    .sql-section h2 { background: #1B3A6B; color: white; padding: 16px 20px; font-size: 1.05rem; font-weight: 700; }
+    .sql-intro { padding: 15px 20px; color: #4a5e7a; font-size: 0.88rem; border-bottom: 1px solid #e8eef5; }
+    .sql-code { background: #0d1117; color: #c9d1d9; padding: 24px; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.7; overflow-x: auto; white-space: pre; }
+    .sql-section + .sql-section { margin-top: 26px; }
+    footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 0.8rem; }
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.6rem; }
+      .container { padding: 20px 12px; }
+      .er-section { padding: 18px; }
+      .tables-grid { grid-template-columns: minmax(0, 1fr); }
+      .sql-code { padding: 16px; font-size: 0.72rem; }
+      .table-header { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🔧 salvusconnect — banco de dados</h1>
+  <p>mysql, relacionamentos e estrutura das tabelas</p>
+</header>
+
+<main class="container">
+  <div class="notice">
+    <strong>modelo do sistema:</strong>
+    este documento apresenta as oito tabelas do projeto: usuários, telefones, veículos,
+    serviços, agendamentos, avaliações, antecedentes criminais e recuperação de senha.
+    o tipo de usuário é identificado pela coluna <code>cd_tipo_usuario</code> da tabela
+    <code>tb_usuario</code>: 0 = administrador, 1 = prestador e 3 = cliente.
+  </div>
+
+  <div class="notice warning">
+    <strong>atenção:</strong>
+    o script sql abaixo é uma referência para criar o banco em uma instalação nova.
+    ele não é uma migração para o banco atual. não execute a criação completa sobre um banco
+    com dados existentes; faça um backup e confira as estruturas antes de aplicar mudanças.
+    a instrução de cadastro dos serviços também deve ser executada apenas uma vez para evitar duplicações.
+  </div>
+
+  <section class="summary">
+    <div class="summary-card"><div class="table-icon">👤</div><h4>tb_usuario</h4><p>clientes, prestadores e administradores</p></div>
+    <div class="summary-card"><div class="table-icon">📞</div><h4>tb_telefone</h4><p>telefones dos usuários</p></div>
+    <div class="summary-card"><div class="table-icon">🚗</div><h4>tb_automovel</h4><p>veículos cadastrados</p></div>
+    <div class="summary-card"><div class="table-icon">🔩</div><h4>tb_servicos</h4><p>catálogo de serviços e duração</p></div>
+    <div class="summary-card"><div class="table-icon">📅</div><h4>tb_agendamento</h4><p>solicitações de serviços</p></div>
+    <div class="summary-card"><div class="table-icon">⭐</div><h4>tb_avaliacao</h4><p>notas e comentários</p></div>
+    <div class="summary-card"><div class="table-icon">📄</div><h4>tb_antecedentes</h4><p>documentos enviados para análise</p></div>
+    <div class="summary-card"><div class="table-icon">🔐</div><h4>tb_recuperacao_senha</h4><p>tokens temporários de recuperação</p></div>
+  </section>
+
+  <section class="er-section">
+    <h2>📊 diagrama de relacionamentos (er)</h2>
+    <div class="er-diagram"><div class="er-box">tb_usuario</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_telefone</div></div>
+    <div class="er-diagram"><div class="er-box">tb_usuario</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_automovel</div></div>
+    <div class="er-diagram"><div class="er-box">tb_servicos</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_agendamento</div></div>
+    <div class="er-diagram"><div class="er-box">tb_agendamento</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_avaliacao</div></div>
+    <div class="er-diagram"><div class="er-box">tb_usuario (cliente)</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_agendamento</div></div>
+    <div class="er-diagram"><div class="er-box">tb_usuario (prestador)</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_agendamento</div></div>
+    <div class="er-diagram"><div class="er-box">tb_usuario</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_antecedentes</div></div>
+    <div class="er-diagram"><div class="er-box">tb_usuario</div><div class="er-arrow">1 ─── n</div><div class="er-box">tb_recuperacao_senha</div></div>
+
+    <ul class="er-relations">
+      <li><strong>usuário → telefones:</strong> <code>tb_telefone.tb_usuario_id_usuario</code>.</li>
+      <li><strong>usuário → veículos:</strong> <code>tb_automovel.tb_usuario_id_usuario</code>.</li>
+      <li><strong>serviço → agendamentos:</strong> <code>tb_agendamento.tb_servicos_id_servico</code>.</li>
+      <li><strong>cliente → agendamentos:</strong> <code>tb_agendamento.tb_usuario_id_usuario</code> identifica quem solicitou o serviço.</li>
+      <li><strong>prestador → agendamentos:</strong> <code>tb_agendamento.tb_prestador_id_usuario</code> referencia <code>tb_usuario.id_usuario</code> e pode ficar nulo antes da atribuição.</li>
+      <li><strong>agendamento → avaliações:</strong> <code>tb_avaliacao.tb_agendamento_id_agendamento</code>.</li>
+      <li><strong>usuário → antecedentes:</strong> <code>tb_antecedentes.tb_usuario_id_usuario</code> referencia o usuário que enviou o documento.</li>
+      <li><strong>administrador → antecedentes:</strong> <code>tb_antecedentes.tb_administrador_id_usuario</code> referencia <code>tb_usuario.id_usuario</code> para identificar quem analisa o documento.</li>
+      <li><strong>usuário → recuperação de senha:</strong> <code>tb_recuperacao_senha.tb_usuario_id_usuario</code> vincula o token à conta.</li>
+      <li><strong>tipos de usuário:</strong> não há tabelas separadas para administrador, prestador e cliente; os perfis são indicados por <code>cd_tipo_usuario</code>.</li>
+    </ul>
+  </section>
+
+  <section class="tables-grid">
+    <article class="table-card">
+      <div class="table-header"><span class="icon">👤</span><h3>tb_usuario</h3><span class="desc">contas do sistema</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_usuario <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>nm_nome</td><td><span class="type-badge type-string">varchar(100)</span></td><td>sim</td></tr>
+        <tr><td>nr_cpf</td><td><span class="type-badge type-string">char(11)</span></td><td>não</td></tr>
+        <tr><td>cnh</td><td><span class="type-badge type-string">varchar(20)</span></td><td>não</td></tr>
+        <tr><td>nm_tipo_cnh</td><td><span class="type-badge type-string">varchar(3)</span></td><td>não</td></tr>
+        <tr><td>email</td><td><span class="type-badge type-string">varchar(150)</span></td><td>sim</td></tr>
+        <tr><td>senha</td><td><span class="type-badge type-string">varchar(255)</span></td><td>sim</td></tr>
+        <tr><td>cd_tipo_usuario</td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>ds_sobre_mim</td><td><span class="type-badge type-text">text</span></td><td>não</td></tr>
+      </tbody></table><div class="table-note"><strong>tipos:</strong> 0 = administrador; 1 = prestador; 3 = cliente. os três perfis usam esta mesma tabela. as senhas devem ser armazenadas com hash, nunca em texto puro.</div></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">📞</span><h3>tb_telefone</h3><span class="desc">telefones</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_telefone <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>nr_telefone</td><td><span class="type-badge type-string">char(11)</span></td><td>não</td></tr>
+        <tr><td>nm_tipo_telefone</td><td><span class="type-badge type-string">varchar(45)</span></td><td>não</td></tr>
+        <tr><td>tb_usuario_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">🚗</span><h3>tb_automovel</h3><span class="desc">veículos</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_automovel <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>nm_marca</td><td><span class="type-badge type-string">varchar(50)</span></td><td>não</td></tr>
+        <tr><td>nm_modelo</td><td><span class="type-badge type-string">varchar(50)</span></td><td>não</td></tr>
+        <tr><td>ano_modelo</td><td><span class="type-badge type-number">int</span></td><td>não</td></tr>
+        <tr><td>nm_cor</td><td><span class="type-badge type-string">varchar(30)</span></td><td>não</td></tr>
+        <tr><td>nr_placa</td><td><span class="type-badge type-string">varchar(10)</span></td><td>não</td></tr>
+        <tr><td>tb_usuario_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">🔩</span><h3>tb_servicos</h3><span class="desc">catálogo de serviços</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_servico <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>nm_servico</td><td><span class="type-badge type-string">varchar(200)</span></td><td>não</td></tr>
+        <tr><td>ds_descricao</td><td><span class="type-badge type-string">varchar(500)</span></td><td>não</td></tr>
+        <tr><td>nr_duracao_minutos</td><td><span class="type-badge type-number">int</span></td><td>sim, padrão 120</td></tr>
+      </tbody></table><div class="table-note">os dez serviços cadastrados usam esta coluna para registrar a duração prevista em minutos.</div></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">📅</span><h3>tb_agendamento</h3><span class="desc">solicitações</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_agendamento <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>st_agendamento</td><td><span class="type-badge type-string">varchar(20)</span></td><td>sim, padrão pendente</td></tr>
+        <tr><td>hr_horario</td><td><span class="type-badge type-date">datetime</span></td><td>não</td></tr>
+        <tr><td>ds_local_busca</td><td><span class="type-badge type-string">varchar(200)</span></td><td>não</td></tr>
+        <tr><td>ds_local_entrega</td><td><span class="type-badge type-string">varchar(200)</span></td><td>não</td></tr>
+        <tr><td>tb_servicos_id_servico <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>tb_usuario_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>tb_prestador_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>não</td></tr>
+      </tbody></table><div class="table-note"><strong>status permitidos pelo check:</strong> pendente, aceito, recusado, em_andamento, concluido e cancelado. <code>tb_prestador_id_usuario</code> é uma coluna que referencia <code>tb_usuario.id_usuario</code>; não é uma tabela separada.</div></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">⭐</span><h3>tb_avaliacao</h3><span class="desc">avaliações</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_avaliacao <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>nr_nota</td><td><span class="type-badge type-number">int</span></td><td>não</td></tr>
+        <tr><td>ds_comentario</td><td><span class="type-badge type-text">text</span></td><td>não</td></tr>
+        <tr><td>tb_agendamento_id_agendamento <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+      </tbody></table><div class="table-note">a restrição de verificação permite nota entre 1 e 5 ou valor nulo.</div></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">📄</span><h3>tb_antecedentes</h3><span class="desc">documentos</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_antecedente <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>nm_arquivo</td><td><span class="type-badge type-string">varchar(255)</span></td><td>sim</td></tr>
+        <tr><td>ds_arquivo</td><td><span class="type-badge type-string">varchar(500)</span></td><td>sim</td></tr>
+        <tr><td>nm_tipo_arquivo</td><td><span class="type-badge type-string">varchar(50)</span></td><td>não</td></tr>
+        <tr><td>dt_envio</td><td><span class="type-badge type-date">datetime</span></td><td>padrão atual</td></tr>
+        <tr><td>st_analise</td><td><span class="type-badge type-string">varchar(20)</span></td><td>sim, padrão pendente</td></tr>
+        <tr><td>dt_analise</td><td><span class="type-badge type-date">datetime</span></td><td>não</td></tr>
+        <tr><td>dt_proxima_atualizacao</td><td><span class="type-badge type-date">date</span></td><td>não</td></tr>
+        <tr><td>ds_observacao</td><td><span class="type-badge type-string">varchar(500)</span></td><td>não</td></tr>
+        <tr><td>tb_usuario_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>tb_administrador_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>não</td></tr>
+      </tbody></table><div class="table-note"><strong>status previstos:</strong> pendente, aprovado e reprovado. a coluna <code>tb_administrador_id_usuario</code> referencia um registro de <code>tb_usuario</code>; não existe tabela separada de administradores.</div></div>
+    </article>
+
+    <article class="table-card">
+      <div class="table-header"><span class="icon">🔐</span><h3>tb_recuperacao_senha</h3><span class="desc">recuperação de senha</span></div>
+      <div class="table-body"><table><thead><tr><th>campo</th><th>tipo</th><th>obrig.</th></tr></thead><tbody>
+        <tr><td>id_recuperacao <span class="pk-badge">pk</span></td><td><span class="type-badge type-number">bigint unsigned</span></td><td>sim</td></tr>
+        <tr><td>tb_usuario_id_usuario <span class="fk-badge">fk</span></td><td><span class="type-badge type-number">int</span></td><td>sim</td></tr>
+        <tr><td>token_hash <span class="unique-badge">unique</span></td><td><span class="type-badge type-string">char(64)</span></td><td>sim</td></tr>
+        <tr><td>dt_expiracao</td><td><span class="type-badge type-date">datetime</span></td><td>sim</td></tr>
+        <tr><td>dt_utilizado</td><td><span class="type-badge type-date">datetime</span></td><td>não</td></tr>
+        <tr><td>dt_criacao</td><td><span class="type-badge type-date">datetime</span></td><td>padrão atual</td></tr>
+      </tbody></table><div class="table-note"><strong>finalidade:</strong> armazena o hash do token, a conta vinculada, a expiração e o registro de uso. o token original não deve ser armazenado em texto puro.</div></div>
+    </article>
+  </section>
+
+  <section class="sql-section">
+    <h2>💻 script sql — modelo para instalação nova</h2>
+    <p class="sql-intro">este script descreve o modelo aprovado. execute a criação completa somente em uma instalação nova e vazia. <code>create table if not exists</code> não atualiza tabelas existentes. os dez serviços são inseridos ao final e não devem ser inseridos novamente se já estiverem cadastrados.</p>
+    <pre class="sql-code">create database if not exists salvusconnect;
+use salvusconnect;
+
+-- tabela de usuarios: 0 = administrador, 1 = prestador, 3 = cliente
+create table if not exists tb_usuario (
+    id_usuario int primary key auto_increment,
+    nm_nome varchar(100) not null,
+    nr_cpf char(11),
+    cnh varchar(20),
+    nm_tipo_cnh varchar(3),
+    email varchar(150) not null,
+    senha varchar(255) not null,
+    cd_tipo_usuario int not null,
+    ds_sobre_mim text null,
+    check (cd_tipo_usuario in (0, 1, 3))
+) engine=innodb;
+
+-- tabela de telefones
+create table if not exists tb_telefone (
+    id_telefone int primary key auto_increment,
+    nr_telefone char(11),
+    nm_tipo_telefone varchar(45),
+    tb_usuario_id_usuario int not null,
+    foreign key (tb_usuario_id_usuario)
+        references tb_usuario(id_usuario)
+) engine=innodb;
+
+-- tabela de automoveis
+create table if not exists tb_automovel (
+    id_automovel int primary key auto_increment,
+    nm_marca varchar(50),
+    nm_modelo varchar(50),
+    ano_modelo int,
+    nm_cor varchar(30),
+    nr_placa varchar(10),
+    tb_usuario_id_usuario int not null,
+    foreign key (tb_usuario_id_usuario)
+        references tb_usuario(id_usuario)
+) engine=innodb;
+
+-- tabela de servicos
+create table if not exists tb_servicos (
+    id_servico int primary key auto_increment,
+    nm_servico varchar(200),
+    ds_descricao varchar(500),
+    nr_duracao_minutos int not null default 120
+) engine=innodb;
+
+-- tabela de agendamentos
+create table if not exists tb_agendamento (
+    id_agendamento int primary key auto_increment,
+    st_agendamento varchar(20) not null default 'pendente',
+    hr_horario datetime,
+    ds_local_busca varchar(200),
+    ds_local_entrega varchar(200),
+    tb_servicos_id_servico int not null,
+    tb_usuario_id_usuario int not null,
+    tb_prestador_id_usuario int null,
+    check (
+        st_agendamento in (
+            'pendente',
+            'aceito',
+            'recusado',
+            'em_andamento',
+            'concluido',
+            'cancelado'
+        )
+    ),
+    foreign key (tb_servicos_id_servico)
+        references tb_servicos(id_servico),
+    foreign key (tb_usuario_id_usuario)
+        references tb_usuario(id_usuario),
+    constraint fk_agendamento_prestador
+        foreign key (tb_prestador_id_usuario)
+        references tb_usuario(id_usuario)
+) engine=innodb;
+
+-- tabela de avaliacoes
+create table if not exists tb_avaliacao (
+    id_avaliacao int primary key auto_increment,
+    nr_nota int,
+    ds_comentario text,
+    tb_agendamento_id_agendamento int not null,
+    check (nr_nota is null or nr_nota between 1 and 5),
+    foreign key (tb_agendamento_id_agendamento)
+        references tb_agendamento(id_agendamento)
+) engine=innodb;
+
+-- tabela de antecedentes criminais
+create table if not exists tb_antecedentes (
+    id_antecedente int primary key auto_increment,
+    nm_arquivo varchar(255) not null,
+    ds_arquivo varchar(500) not null,
+    nm_tipo_arquivo varchar(50),
+    dt_envio datetime default current_timestamp,
+    st_analise varchar(20) not null default 'PENDENTE',
+    dt_analise datetime,
+    dt_proxima_atualizacao date null,
+    ds_observacao varchar(500),
+    tb_usuario_id_usuario int not null,
+    tb_administrador_id_usuario int,
+    check (st_analise in ('PENDENTE', 'APROVADO', 'REPROVADO')),
+    foreign key (tb_usuario_id_usuario)
+        references tb_usuario(id_usuario),
+    foreign key (tb_administrador_id_usuario)
+        references tb_usuario(id_usuario)
+) engine=innodb;
+
+-- tabela de recuperacao de senha
+create table if not exists tb_recuperacao_senha (
+    id_recuperacao bigint unsigned primary key auto_increment,
+    tb_usuario_id_usuario int not null,
+    token_hash char(64)
+        character set ascii
+        collate ascii_bin not null,
+    dt_expiracao datetime not null,
+    dt_utilizado datetime null,
+    dt_criacao datetime not null default current_timestamp,
+    unique key uq_recuperacao_token (token_hash),
+    index idx_recuperacao_usuario (tb_usuario_id_usuario),
+    index idx_recuperacao_expiracao (dt_expiracao),
+    constraint fk_recuperacao_usuario
+        foreign key (tb_usuario_id_usuario)
+        references tb_usuario(id_usuario)
+        on delete cascade
+        on update cascade
+) engine=innodb;
+
+-- cadastro inicial dos dez servicos
+insert into tb_servicos (
+    nm_servico,
+    ds_descricao,
+    nr_duracao_minutos
+) values
+(
+    'caminhada matinal',
+    'acompanhamento durante caminhadas matinais, respeitando o ritmo e as necessidades do cliente.',
+    120
+),
+(
+    'acompanhamento para exames',
+    'acompanhamento durante a realização de exames, oferecendo auxílio e companhia ao cliente.',
+    120
+),
+(
+    'transporte para pronto-socorro',
+    'auxílio no deslocamento até o pronto-socorro. em situações de emergência, deve-se acionar o samu pelo 192.',
+    120
+),
+(
+    'transporte para consultas',
+    'acompanhamento no deslocamento de ida e volta para consultas médicas.',
+    120
+),
+(
+    'acompanhamento hospitalar',
+    'companhia e auxílio não clínico durante permanências e atendimentos hospitalares.',
+    180
+),
+(
+    'cuidado noturno',
+    'acompanhamento e auxílio não clínico durante o período noturno, conforme as necessidades combinadas.',
+    480
+),
+(
+    'apoio domiciliar',
+    'auxílio nas atividades cotidianas e organização leve da rotina dentro de casa.',
+    120
+),
+(
+    'compras e mandados',
+    'acompanhamento ou auxílio em compras, farmácia e outras tarefas do dia a dia.',
+    120
+),
+(
+    'acompanhamento em viagens',
+    'companhia e auxílio durante viagens previamente combinadas. despesas de transporte e hospedagem não incluídas.',
+    240
+),
+(
+    'visita e companhia',
+    'visitas para conversar, realizar atividades de lazer e oferecer companhia ao cliente.',
+    120
+);
+
+-- consulta dos servicos cadastrados
+select
+    id_servico,
+    nm_servico,
+    ds_descricao,
+    nr_duracao_minutos
+from tb_servicos
+order by id_servico;</pre>
+  </section>
+
+  <section class="sql-section">
+    <h2>🔎 consultas para conferir a estrutura atual</h2>
+    <p class="sql-intro">estas consultas são somente de leitura: exibem a estrutura das tabelas sem adicionar, remover ou alterar colunas e dados.</p>
+    <pre class="sql-code">use salvusconnect;
+
+show tables;
+
+show create table tb_usuario;
+show create table tb_telefone;
+show create table tb_automovel;
+show create table tb_servicos;
+show create table tb_agendamento;
+show create table tb_avaliacao;
+show create table tb_antecedentes;
+show create table tb_recuperacao_senha;
+
+describe tb_usuario;
+describe tb_telefone;
+describe tb_automovel;
+describe tb_servicos;
+describe tb_agendamento;
+describe tb_avaliacao;
+describe tb_antecedentes;
+describe tb_recuperacao_senha;</pre>
+  </section>
+</main>
+
+<footer>salvusconnect © 2026 — modelo do banco de dados mysql</footer>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SalvusConnect - Meus Veículos</title>
+
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/veiculos.css">
+  <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+  <script
+    src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+    integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+    crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+
+  <main class="main-container vehicles-page">
+
+    <header class="page-header">
+      <div class="vehicles-heading">
+        <nav class="page-navigation" aria-label="Navegação da página">
+          <button class="page-nav-button" type="button" id="btn-voltar">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Voltar</span>
+          </button>
+        </nav>
+
+        <h1>Meus Veículos</h1>
+        <p class="page-subtitle">
+          Gerencie seus veículos para facilitar os agendamentos.
+        </p>
+      </div>
+
+      <button class="btn-primary" type="button" onclick="openModal()">
+        <i data-lucide="plus" aria-hidden="true"></i>
+        <span>Novo Veículo</span>
+      </button>
+    </header>
+
+    <section class="empty-state" id="empty-state">
+      <div class="icon-badge">
+        <i data-lucide="car-front" aria-hidden="true"></i>
+      </div>
+
+      <h2>Nenhum veículo cadastrado</h2>
+
+      <p>
+        Adicione seus veículos para facilitar os agendamentos.
+      </p>
+
+      <button class="btn-accent" type="button" onclick="openModal()">
+        <i data-lucide="plus" aria-hidden="true"></i>
+        Cadastrar Veículo
+      </button>
+    </section>
+
+    <section
+      class="vehicles-grid"
+      id="vehicles-container"
+      aria-label="Meus veículos"
+      style="display: none;">
+    </section>
+
+  </main>
+
+  <!-- Modal de cadastro -->
+  <div
+    class="modal-overlay"
+    id="modal-vehicle"
+    aria-hidden="true">
+
+    <div
+      class="modal-content"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title">
+
+      <header class="modal-header">
+        <div>
+          <span class="modal-eyebrow">GARAGEM</span>
+          <h2 id="modal-title">Cadastrar Veículo</h2>
+        </div>
+
+        <button
+          class="close-btn"
+          type="button"
+          onclick="closeModal()"
+          aria-label="Fechar formulário">
+
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <form id="vehicle-form" onsubmit="handleSaveVehicle(event)">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="marca">Marca <span>*</span></label>
+            <input
+              type="text"
+              id="marca"
+              required
+              maxlength="80"
+              placeholder="Ex.: Chevrolet">
+          </div>
+
+          <div class="form-group">
+            <label for="modelo">Modelo <span>*</span></label>
+            <input
+              type="text"
+              id="modelo"
+              required
+              maxlength="100"
+              placeholder="Ex.: Onix">
+          </div>
+        </div>
+
+        <div class="form-row vehicle-form-row">
+          <div class="form-group">
+            <label for="ano">Ano <span>*</span></label>
+            <input
+              type="number"
+              id="ano"
+              required
+              min="1900"
+              max="2100"
+              placeholder="2022">
+          </div>
+
+          <div class="form-group">
+            <label for="cor">Cor</label>
+            <input
+              type="text"
+              id="cor"
+              maxlength="40"
+              placeholder="Ex.: Prata">
+          </div>
+
+          <div class="form-group">
+            <label for="placa">Placa <span>*</span></label>
+            <input
+              type="text"
+              id="placa"
+              required
+              maxlength="8"
+              placeholder="ABC1D23"
+              autocomplete="off"
+              style="text-transform: uppercase;">
+          </div>
+        </div>
+
+        <p class="form-required-note">
+          <span>*</span> Campos obrigatórios
+        </p>
+
+        <div class="modal-actions">
+          <button
+            class="btn-modal-cancel"
+            type="button"
+            onclick="closeModal()">
+            Cancelar
+          </button>
+
+          <button type="submit" class="btn-submit">
+            <i data-lucide="save" aria-hidden="true"></i>
+            Salvar Veículo
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/veiculos.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+  <script>
+    document.getElementById("btn-voltar")?.addEventListener("click", function () {
+      let anterior = null;
+
+      try {
+        anterior = new URL(document.referrer);
+      } catch (erro) {
+        anterior = null;
+      }
+
+      const paginaInterna =
+        anterior &&
+        anterior.origin === window.location.origin &&
+        anterior.pathname !== window.location.pathname &&
+        /\/pages\//i.test(anterior.pathname) &&
+        !/\/(login|cadastro|register)\.html$/i.test(anterior.pathname);
+
+      if (paginaInterna && window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "dashboard.html";
+      }
+    });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+
+</body>
+</html>

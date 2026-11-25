@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1833">
+
+    <title>Login | SalvusConnect</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/SistemaDeLogin.css">
+    <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+    <!-- Ícones Lucide -->
+    <script
+        src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+        integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="auth-page">
+
+    <main class="auth-wrapper">
+
+        <!-- Painel da marca -->
+        <aside class="auth-banner">
+
+            <div class="brand-hero">
+
+                <div class="brand-icon-lg" aria-hidden="true">
+                    <i data-lucide="heart-handshake"></i>
+                </div>
+
+                <a
+                    href="login.html"
+                    class="brand-name"
+                    aria-label="SalvusConnect - página de login">
+
+                    <span class="brand-salvus">Salvus</span><span class="brand-connect">Connect</span>
+
+                </a>
+
+                <div class="brand-divider"></div>
+
+                <h1>Conexões que cuidam.</h1>
+
+                <p>
+                    Aproximando pessoas, facilitando cuidados e construindo
+                    relações de confiança.
+                </p>
+
+            </div>
+
+            <div class="banner-footer">
+                <span class="banner-dot"></span>
+                <span>Cuidado, confiança e conexão.</span>
+            </div>
+
+        </aside>
+
+        <!-- Área de autenticação -->
+        <section class="auth-content">
+
+            <div class="auth-card">
+
+                <!-- Cabeçalho -->
+                <header class="auth-header">
+
+                    <span class="auth-eyebrow">
+                        BEM-VINDO DE VOLTA
+                    </span>
+
+                    <h2>Entre na sua conta</h2>
+
+                    <p>
+                        Acesse o SalvusConnect para continuar.
+                    </p>
+
+                </header>
+
+                <!-- Mensagens de autenticação retornadas pela URL -->
+                <div
+                    id="auth-message"
+                    class="auth-message error"
+                    role="alert"
+                    aria-live="polite"
+                    hidden>
+                </div>
+
+                <!-- Login tradicional -->
+                <form
+                    class="auth-form"
+                    action="../php/login.php"
+                    method="POST"
+                    autocomplete="on">
+
+                    <div class="form-group">
+
+                        <label for="email">E-mail</label>
+
+                        <div class="auth-input-wrap">
+
+                            <i data-lucide="mail" aria-hidden="true"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="seu@email.com"
+                                autocomplete="username"
+                                maxlength="150"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="input-label-row">
+
+                            <label for="senha">Senha</label>
+
+                            <a
+                                href="recuperar-senha.html"
+                                class="forgot-link">
+
+                                Esqueceu a senha?
+
+                            </a>
+
+                        </div>
+
+                        <div class="auth-input-wrap">
+
+                            <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+
+                            <input
+                                type="password"
+                                id="senha"
+                                name="senha"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+
+                        <span>Acessar minha conta</span>
+
+                        <i data-lucide="arrow-right" aria-hidden="true"></i>
+
+                    </button>
+
+                </form>
+
+                <!-- Aviso de segurança -->
+                <div class="auth-security-note">
+
+                    <i data-lucide="shield-check" aria-hidden="true"></i>
+
+                    <span>
+                        Seus dados de acesso são protegidos.
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Cadastro -->
+            <p class="auth-footer-text">
+                Ainda não tem uma conta?
+                <a href="tipo-usuario.html">Criar conta</a>
+            </p>
+
+            <p class="auth-copyright">
+                SalvusConnect · Cuidado que aproxima.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript do login -->
+    <script src="../js/login.js"></script>
+
+</body>
+</html>

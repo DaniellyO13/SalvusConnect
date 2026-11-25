@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SalvusConnect - Prestadores de Serviços</title>
+
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/servicos.css">
+  <link rel="icon" href="./SalvusConnect.jpg" type="image/jpeg">
+
+  <!-- Lucide Icons -->
+  <script
+    src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"
+    integrity="sha256-u4LvZOBXQxTtbZJd5uYAlpESLruJD6ZRt3WD8OPVNU8="
+    crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+
+  <!-- Sidebar, Navbar Mobile e Overlay compartilhados pelo sidebar.js -->
+
+  <main class="main-container">
+
+    <section class="page-header">
+      <h1>Prestadores de Serviço</h1>
+
+      <p>
+        Encontre o melhor profissional para você.
+      </p>
+    </section>
+
+    <!-- Campo de busca: funciona para prestadores e serviços -->
+    <div class="search-container">
+
+      <i data-lucide="search" class="search-icon"></i>
+
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Buscar por nome ou especialidade..."
+        aria-label="Buscar prestadores ou serviços"
+      >
+
+    </div>
+
+    <!-- Conteúdo definido pelo tipo de usuário -->
+    <section
+      class="providers-grid"
+      id="providers-container"
+      aria-live="polite">
+      <!-- O JavaScript carrega os prestadores ou o catálogo -->
+    </section>
+
+  </main>
+
+  <!-- JavaScript da página -->
+  <script src="../js/servicos.js"></script>
+
+  <!-- Menu lateral compartilhado -->
+  <script src="../js/sidebar.js"></script>
+
+</body>
+</html>
