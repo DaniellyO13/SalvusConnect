@@ -1,4 +1,3 @@
-
 "use strict";
 
 // SALVUSCONNECT — CADASTRO
@@ -274,9 +273,9 @@ function configurarEnvioFormulario(formulario) {
 
             botaoEnviar.textContent = "Cadastro concluído!";
 
-            // Usa o destino fornecido pelo servidor ou o dashboard padrão.
+            // Usa o destino fornecido pelo servidor ou o login padrão.
             window.setTimeout(() => {
-                window.location.href = dados.redirect || "dashboard.html";
+                window.location.href = dados.redirect || "login.html";
             }, 1800);
 
         } catch (erro) {

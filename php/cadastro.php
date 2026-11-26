@@ -146,6 +146,12 @@ try {
     /* Cria o usuário */
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
+    if ($senhaHash === false) {
+        throw new RuntimeException(
+            'Não foi possível gerar o hash da senha.'
+        );
+    }
+
     $sqlUsuario = '
         INSERT INTO tb_usuario
             (nm_nome, nr_cpf, cnh, nm_tipo_cnh, email, senha, cd_tipo_usuario)
@@ -233,25 +239,18 @@ try {
 
     $conexao->commit();
 
-    /* Inicia a sessão para que o usuário não precise fazer login novamente */
-    session_regenerate_id(true);
-
-    $_SESSION['id_usuario'] = $idUsuario;
-    $_SESSION['nm_nome'] = $nome;
-    $_SESSION['email'] = $email;
-    $_SESSION['cd_tipo_usuario'] = $tipoUsuario;
-
+    /* Cadastro concluído: o usuário deverá entrar manualmente */
     $mensagem = $tipoUsuario === 1
-        ? 'Cadastro concluído! Você já está conectado. O envio dos antecedentes criminais ainda está pendente.'
-        : 'Cadastro concluído com sucesso! Você já está conectado.';
+        ? 'Cadastro concluído com sucesso! Faça login para acessar sua conta. O envio dos antecedentes criminais ainda está pendente.'
+        : 'Cadastro concluído com sucesso! Faça login para acessar sua conta.';
 
     responderJson([
         'sucesso' => true,
         'mensagem' => $mensagem,
-        'redirect' => 'dashboard.html'
+        'redirect' => 'login.html'
     ]);
 
-} catch (PDOException $erro) {
+} catch (Throwable $erro) {
     if ($conexao->inTransaction()) {
         $conexao->rollBack();
     }

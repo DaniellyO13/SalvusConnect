@@ -42,12 +42,17 @@ try {
         throw new RuntimeException('Conexão PDO indisponível.');
     }
 
-    // DIAGNÓSTICO: identifica banco e servidor utilizados
+    /*
+     * DIAGNÓSTICO 1:
+     * Identifica o banco e o servidor utilizados.
+     */
     $ambiente = $conexao->query(
         'SELECT DATABASE() AS banco, @@hostname AS servidor'
     )->fetch(PDO::FETCH_ASSOC);
 
-    // Busca o usuário pelo e-mail
+    /*
+     * Busca o usuário pelo e-mail.
+     */
     $sql = "
         SELECT
             id_usuario,
@@ -68,49 +73,70 @@ try {
 
     $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
-    // Diagnóstico temporário da autenticação
+    /*
+     * DIAGNÓSTICO 2:
+     * Verifica o registro recuperado e a senha.
+     * Nenhuma senha ou hash completo é registrado.
+     */
     $usuarioEncontrado = is_array($usuario);
     $senhaValida = false;
 
     $idUsuario = 'NAO_ENCONTRADO';
-    $impressaoHash = 'NAO_DISPONIVEL';
     $tamanhoHash = 0;
+    $algoritmoHash = 'NAO_DISPONIVEL';
+    $formatoHashValido = false;
 
     if ($usuarioEncontrado) {
         $idUsuario = (string) $usuario['id_usuario'];
 
         if (
             isset($usuario['senha']) &&
-            is_string($usuario['senha'])
+            is_string($usuario['senha']) &&
+            $usuario['senha'] !== ''
         ) {
-            $tamanhoHash = strlen($usuario['senha']);
+            $hashGravado = $usuario['senha'];
 
-            $impressaoHash = hash(
-                'sha256',
-                $usuario['senha']
+            $tamanhoHash = strlen($hashGravado);
+
+            $informacoesHash = password_get_info($hashGravado);
+
+            $algoritmoHash = $informacoesHash['algoName'] ?? 'desconhecido';
+
+            $formatoHashValido = (
+                $algoritmoHash !== 'unknown' &&
+                $algoritmoHash !== 'desconhecido'
             );
 
-            $senhaValida = password_verify(
-                $senha,
-                $usuario['senha']
-            );
+            if ($formatoHashValido) {
+                $senhaValida = password_verify(
+                    $senha,
+                    $hashGravado
+                );
+            }
         }
     }
 
+    /*
+     * DIAGNÓSTICO 3:
+     * Registra somente informações técnicas necessárias
+     * para identificar a origem da falha.
+     */
     error_log(
         'Diagnóstico login SalvusConnect: ' .
         'banco=' . ($ambiente['banco'] ?? 'INDEFINIDO') .
         '; servidor=' . ($ambiente['servidor'] ?? 'INDEFINIDO') .
-        '; email_consultado=' . $email .
         '; usuario_encontrado=' . ($usuarioEncontrado ? 'SIM' : 'NAO') .
         '; id_usuario=' . $idUsuario .
         '; tamanho_hash=' . $tamanhoHash .
-        '; impressao_hash=' . $impressaoHash .
+        '; algoritmo_hash=' . $algoritmoHash .
+        '; formato_hash_valido=' . ($formatoHashValido ? 'SIM' : 'NAO') .
         '; senha_recebida_bytes=' . strlen($senha) .
         '; senha_valida=' . ($senhaValida ? 'SIM' : 'NAO')
     );
 
-    // Diferencia usuário não encontrado de senha incorreta
+    /*
+     * Diferencia usuário não encontrado de senha incorreta.
+     */
     if (!$usuarioEncontrado) {
         header('Location: ' . $paginaLogin . '?erro=conta');
         exit;
@@ -121,7 +147,9 @@ try {
         exit;
     }
 
-    // Verifica o tipo de usuário
+    /*
+     * Verifica o tipo de usuário.
+     */
     $tipoUsuario = (int) $usuario['cd_tipo_usuario'];
 
     if (!in_array($tipoUsuario, [0, 1, 3], true)) {
@@ -129,19 +157,27 @@ try {
         exit;
     }
 
-    // Renova o identificador da sessão
+    /*
+     * Renova o identificador da sessão.
+     */
     session_regenerate_id(true);
 
-    // Armazena os dados do usuário
+    /*
+     * Armazena os dados do usuário.
+     */
     $_SESSION['id_usuario'] = (int) $usuario['id_usuario'];
     $_SESSION['nm_nome'] = $usuario['nm_nome'];
     $_SESSION['email'] = $usuario['email'];
     $_SESSION['cd_tipo_usuario'] = $tipoUsuario;
 
-    // Gera o token CSRF da sessão autenticada
+    /*
+     * Gera o token CSRF da sessão autenticada.
+     */
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
-    // Direciona conforme o tipo de conta
+    /*
+     * Direciona conforme o tipo de conta.
+     */
     switch ($tipoUsuario) {
         case 0:
             header('Location: ' . $paginaAdmin);
