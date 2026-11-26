@@ -1,0 +1,13 @@
+{
+    "id_usuario": 6,
+    "tipo_usuario": 3,
+    "perfil": "cliente",
+    "termos": {
+        "versao": "1.0",
+        "aceito_em": "2026-11-26T10:08:43-03:00",
+        "confirmacoes": {
+            "leitura": true,
+            "concordancia": true
+        }
+    }
+}
