@@ -1,10 +1,9 @@
 <?php
 
-$host = "salvus-connecttcc.mysql.database.azure.com";
-$banco = "db_salvusconn";
-$usuario = "juliana_nunes007";
-$senha = "4pmxWpF4XfAEHwd";
-
+$host = "localhost";
+$banco = "salvusconnect";
+$usuario = "root";
+$senha = "22794877d";
 
 try {
     $conexao = new PDO(
