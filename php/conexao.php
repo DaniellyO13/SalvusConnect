@@ -3,7 +3,7 @@
 $host = "localhost";
 $banco = "u288393671_salvusconnect";
 $usuario = "u288393671_salvusconnect";
-$senha = "COLOQUE_A_SENHA_DO_BANCO_DO_HOSTINGER_AQUI";
+$senha = "22794877Da@";
 
 try {
     $conexao = new PDO(
