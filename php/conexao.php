@@ -1,13 +1,13 @@
 <?php
 
 $host = "localhost";
-$banco = "u288393671_salvusconnect";
-$usuario = "u288393671_salvusconnect";
-$senha = "22794877Da@";
+$banco = "SalvusConnect";
+$usuario = "root";
+$senha = "22794877d";
 
 try {
     $conexao = new PDO(
-        "mysql:host={$host};dbname={$banco};charset=utf8mb4",
+        "mysql:host=$host;dbname=$banco;charset=utf8mb4",
         $usuario,
         $senha,
         [
@@ -17,7 +17,7 @@ try {
         ]
     );
 } catch (PDOException $erro) {
-    error_log("Erro de conexão com o banco: " . $erro->getMessage());
+    error_log($erro->getMessage());
     http_response_code(500);
-    exit("Erro na conexão com o banco de dados.");
+    exit("Não foi possível conectar ao banco de dados.");
 }
